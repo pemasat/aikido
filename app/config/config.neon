@@ -6,6 +6,9 @@
 #
 common:
 	parameters:
+		database:
+			driver: sqlite
+			host: %appDir%/../db/share.db
 
 	php:
 		date.timezone: Europe/Prague
@@ -16,9 +19,7 @@ common:
 			errorPresenter: Error
 
 		database:
-			dsn: 'mysql:host=localhost;dbname=test'
-			user:
-			password:
+			dsn: '%database.driver%:%database.host%'
 
 		session:
 			expiration: 14 days
@@ -28,6 +29,9 @@ common:
 		authenticator: Authenticator
 		routerFactory: RouterFactory
 		router: @routerFactory::createRouter
+		
+		newsRepository: Aiki\NewsRepository
+
 
 
 	factories:
