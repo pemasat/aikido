@@ -11,11 +11,19 @@ class NewsRepository extends Repository {
 		
 	}
         
-        public function createNew($title, $content) {
+        public function create($title, $content) {
             $this->connection->exec('INSERT INTO news', array(
                 'title' => $title,
                 'content' => $content
             ));
+            return true;
+        }
+        
+        public function edit($id, $title, $content) {
+            $this->connection->exec('UPDATE news SET ? WHERE id=?', array(
+                'title' => $title,
+                'content' => $content
+            ), $id);
             return true;
         }
 }

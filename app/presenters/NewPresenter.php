@@ -24,7 +24,7 @@ class NewsPresenter extends BasePresenter {
 	}
         
         protected function createComponentCreateForm($name) {
-            $form = new Form($this, 'createForm');
+            $form = new Form($this, $name);
             $form->addText('title', 'Nadpis');
             $form->addTextArea('content', 'Obsah');
             $form->addSubmit('send', 'Založit');
@@ -32,11 +32,25 @@ class NewsPresenter extends BasePresenter {
             return $form;
         }
         public function createFormSubmitted(Form $form) {
-            $this->newsRepository->createNew($form->values->title, $form->values->content);
+            $this->newsRepository->create($form->values->title, $form->values->content);
             $this->flashMessage('Novinka založena');
             $this->redirect('News:');
         }
         
+        protected function createComponentEditForm($name) {
+            $form = new Form($this, $name);
+            $form->addHidden('id', $this->request->getParameters()['id']);
+            $form->addText('title', 'Nadpis');
+            $form->addTextArea('content', 'Obsah');
+            $form->addSubmit('send', 'Aktualizovat');
+            $form->onSuccess[] = $this->editFormSubmitted;
+            return $form;
+        }
+        public function editFormSubmitted(Form $form) {
+            $this->newsRepository->edit($form->values->id, $form->values->title, $form->values->content);
+            $this->flashMessage('Novinka byla aktualizovaná');
+            $this->redirect('News:');
+        }
         
 
 }
