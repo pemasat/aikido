@@ -1,7 +1,7 @@
 <?php
 
 
-use Nette\Forms\Form;
+use Nette\Application\UI\Form;
 
 
 
@@ -16,15 +16,15 @@ class NewsPresenter extends BasePresenter {
 		$this->newsRepository = $this->context->newsRepository;
 	}
 	public function beforeRender(){
-		$this->template->news = $this->newsRepository->findAll();
+            $this->template->news = $this->newsRepository->findAll();
 	}
 
 	public function renderDefault() {
 		
 	}
         
-        protected function createComponentCreateForm() {
-            $form = new Form();
+        protected function createComponentCreateForm($name) {
+            $form = new Form($this, 'createForm');
             $form->addText('title', 'Nadpis');
             $form->addTextArea('content', 'Obsah');
             $form->addSubmit('send', 'Založit');
@@ -32,10 +32,11 @@ class NewsPresenter extends BasePresenter {
             return $form;
         }
         public function createFormSubmitted(Form $form) {
-            
+            $this->newsRepository->createNew($form->values->title, $form->values->content);
             $this->flashMessage('Novinka založena');
             $this->redirect('News:');
         }
+        
         
 
 }
