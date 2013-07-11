@@ -23,6 +23,14 @@ class NewsPresenter extends BasePresenter {
 		
 	}
         
+        public function renderDelete() {
+            $this->newsRepository->delete($this->request->getParameters()['id']);
+            $this->flashMessage('Novinka byla smazaná.');
+            $this->redirect('News:');
+            
+        }
+
+
         protected function createComponentCreateForm($name) {
             $form = new Form($this, $name);
             $form->addText('title', 'Nadpis');
