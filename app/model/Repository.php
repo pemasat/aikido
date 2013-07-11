@@ -35,5 +35,12 @@ abstract class Repository extends Nette\Object {
     public function findBy(array $by) {
         return $this->getTable()->where($by);
     }
+    
+    /*
+     * Vrací jen první záznam hledaného řetězce
+     */
+    public function findFirstBy(array $by) {
+        return $this->findBy($by)->fetch();
+    }
 
 }

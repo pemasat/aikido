@@ -26,4 +26,10 @@ class NewsRepository extends Repository {
             ), $id);
             return true;
         }
+        
+        public function delete($id) {
+            return $this->connection->exec('DELETE FROM news WHERE id=?', $id);
+            
+        }
+
 }

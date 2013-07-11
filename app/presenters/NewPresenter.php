@@ -39,9 +39,21 @@ class NewsPresenter extends BasePresenter {
         
         protected function createComponentEditForm($name) {
             $form = new Form($this, $name);
-            $form->addHidden('id', $this->request->getParameters()['id']);
-            $form->addText('title', 'Nadpis');
-            $form->addTextArea('content', 'Obsah');
+
+            if ($this->request->getParameters()['id'] != 'null') {
+                $id = $this->request->getParameters()['id'];
+            } else if ($form->getHttpData()['id']  != 'null') {
+                $id = $form->getHttpData()['id'];
+            } else {
+                throw new Nette\IOException('Nebylo nalezeno id pro novinku');
+            }
+            
+            $item = $this->newsRepository->findFirstBy(array('id' => $id));
+            $form->addHidden('id', $id);
+            $form->addText('title', 'Nadpis')
+                    ->setDefaultValue($item->title);
+            $form->addTextArea('content', 'Obsah')
+                    ->setDefaultValue($item->content);
             $form->addSubmit('send', 'Aktualizovat');
             $form->onSuccess[] = $this->editFormSubmitted;
             return $form;
