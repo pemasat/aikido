@@ -1,12 +1,21 @@
 {block content}
 	<h1 n:block=title>Novinky</h1>
-	<ul>
-		<li n:foreach="$news as $new">
-                    {$new->title}
-                    <a n:href="News:edit id=>$new->id">Editovat</a>
-                    <a n:href="News:delete id=>$new->id">Smazat</a>
-		</li>
-	</ul>
+	<dl n:foreach="$news as $item">
+		{* {if $beforeYear == null && $beforeYear != *}
+                
+                <dt>
+                {*{date('Y') - $item->date}*}
+                {ifset $item->date}
+                    {$item->date}
+                {/ifset}
+                    {$item->title}
+                    <a n:href="News:edit id=>$item->id">Editovat</a>
+                    <a n:href="News:delete id=>$item->id" alert="Opravdu chcete smazat?">Smazat</a>
+		</dt>
+                <dd>
+                    {$item->content}
+                </dd>
+	</dl>
         <p><a n:href="News:create">Založit novou</a></p>
 
 
