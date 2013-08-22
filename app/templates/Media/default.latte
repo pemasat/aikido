@@ -1,0 +1,17 @@
+{block content}
+	<h1 n:block=title>Fotogalerie</h1>
+	
+	<dl n:foreach="$galleries as $gallery">
+		<dt>
+			{$gallery->created|date:'d.m. Y'}
+			 {$gallery->title}
+			 <a n:href="Galleries:edit id=>$gallery->id">Editovat</a>
+			 <a n:href="Galleries:delete id=>$gallery->id" alert="Opravdu chcete smazat?">Smazat</a>
+		</dt>
+	</dl>
+	
+	<p><a n:href="Galleries:create">Založit novou fotogalerii</a></p>
+
+
+
+{/block}

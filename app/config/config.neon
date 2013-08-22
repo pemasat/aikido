@@ -31,6 +31,8 @@ common:
 		router: @routerFactory::createRouter
 		
 		newsRepository: Aiki\NewsRepository
+		contactModel: Aiki\ContactModel
+		galleriesRepository: Aiki\GalleriesRepository
 
 
 

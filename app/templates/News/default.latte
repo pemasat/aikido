@@ -1,12 +1,13 @@
 {block content}
 	<h1 n:block=title>Novinky</h1>
 	<dl n:foreach="$news as $item">
-		{* {if $beforeYear == null && $beforeYear != *}
+		{*
+		{if $beforeYear == null && $beforeYear != 
+           {date('Y') - $item->date}*}
                 
                 <dt>
-                {*{date('Y') - $item->date}*}
-                {ifset $item->date}
-                    {$item->date}
+                {ifset $item->created}
+						 {$item->created|date:'d.m. Y'}
                 {/ifset}
                     {$item->title}
                     <a n:href="News:edit id=>$item->id">Editovat</a>
