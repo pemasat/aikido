@@ -61,11 +61,11 @@ class GalleriesPresenter extends BasePresenter {
     $uploader->createUploader()
              ->setTempUploadsDir(WWW_DIR . '/plupload511/tempDir') // Where should be placed temporaly files
              ->setToken("ahoj") // Resolves file names collisions in temp directory
-             ->setOnSuccess(array($this, 'tests')); // Callback when upload is successful: returns Nette\Http\FileUpload
+             ->setOnSuccess(array($this, 'test')); // Callback when upload is successful: returns Nette\Http\FileUpload
 
     return $uploader->getComponent();
 	 }
-	public function uploadFormSubmitted(Form $form) {
+	public function uploadFormUpload(Form $form) {
 		// ToDo!!!
 	}
 	

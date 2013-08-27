@@ -19,9 +19,13 @@
 	<link rel="stylesheet" media="print" href="{$basePath}/css/print.css">
 	<link rel="shortcut icon" href="{$basePath}/favicon.ico">
 	
+	{*
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+	*}
 	
+	<script src="{$basePath}/js/jquery.js"></script>
+	<script src="{$basePath}/js/jquery-ui.js"></script>
 	{block head}{/block}
 </head>
 
@@ -40,7 +44,6 @@
 	{include #content}
 
 	{block scripts}
-	<script src="{$basePath}/js/jquery.js"></script>
 	<script src="{$basePath}/js/netteForms.js"></script>
 	<script src="{$basePath}/js/main.js"></script>
 	{/block}
