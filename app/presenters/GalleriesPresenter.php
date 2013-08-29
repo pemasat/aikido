@@ -42,7 +42,7 @@ class GalleriesPresenter extends BasePresenter {
 	protected function createComponentUploadForm($name) {
    // Main object
     $uploader = new Echo511\Plupload\Rooftop();
-
+	 
     // Use magic for loading Js and Css?
     // $uploader->disableMagic();
 
@@ -61,11 +61,12 @@ class GalleriesPresenter extends BasePresenter {
     $uploader->createUploader()
              ->setTempUploadsDir(WWW_DIR . '/plupload511/tempDir') // Where should be placed temporaly files
              ->setToken("ahoj") // Resolves file names collisions in temp directory
-             ->setOnSuccess(array($this, 'test')); // Callback when upload is successful: returns Nette\Http\FileUpload
-
+             ->setOnSuccess(array($this, 'onFileUploaded')); // Callback when upload is successful: returns Nette\Http\FileUpload
+	 
     return $uploader->getComponent();
 	 }
-	public function uploadFormUpload(Form $form) {
+	public function onFileUploaded(\Nette\Http\FileUpload $upload, $token) {
+		
 		// ToDo!!!
 	}
 	

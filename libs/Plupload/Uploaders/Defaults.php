@@ -181,7 +181,8 @@ class Defaults extends \Nette\Object implements IUploader
                     'error' => UPLOAD_ERR_OK
                 ));
 
-                $this->onSuccess->invokeArgs(array($upload));
+                // $this->onSuccess->invokeArgs(array($upload));
+					 $this->onSuccess->invokeArgs(array($upload, $this->token));
 
                 // Remove from temp after callback
                 @unlink($filePath);

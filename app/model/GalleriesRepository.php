@@ -31,5 +31,9 @@ class GalleriesRepository extends Repository {
             return $this->connection->exec('DELETE FROM news WHERE id=?', $id);
             
         }
+		  
+		  public function addPhoto($file){
+			  
+		  }
 
 }
