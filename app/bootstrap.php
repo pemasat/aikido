@@ -6,6 +6,7 @@ require __DIR__ . '/../libs/autoload.php';
 
 $configurator = new Nette\Config\Configurator;
 
+
 // Enable Nette Debugger for error visualisation & logging
 //$configurator->setDebugMode(TRUE);
 $configurator->enableDebugger(__DIR__ . '/../log');
@@ -16,7 +17,7 @@ $configurator->setTempDirectory(__DIR__ . '/../temp');
 // Enable RobotLoader - this will load all classes automatically
 $configurator->createRobotLoader()
 	->addDirectory(__DIR__)
-	->addDirectory(__DIR__ . '/../libs')
+	->addDirectory(__DIR__ . '/../libs/nette/nette/Nette')
 	->register();
 
 // Create Dependency Injection container from config.neon file

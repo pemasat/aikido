@@ -23,6 +23,20 @@ class GalleriesPresenter extends BasePresenter {
 		
 	}
 	
+	public function createComponentTestForm($galleryId) {
+	    $form = new Form;
+	    $form->addMultipleFileUpload("pokus1","Testík",20)
+		->addRule("MultipleFileUpload::validateFilled","Musíte odeslat alespoň jeden soubor!")
+		->addRule("MultipleFileUpload::validateFileSize","Soubory jsou dohromady moc veliké!",1024); // 1 KB
+	    
+	    // $form->addHidden('galleryId', $galleryId);
+	    
+	    
+	    return $form;
+	}
+	
+	
+
 	protected function createComponentCreateForm($name) {
 		 $form = new Form($this, $name);
 		 $form->addText('title', 'Název fotogalerie');
@@ -40,33 +54,18 @@ class GalleriesPresenter extends BasePresenter {
 	}
 	
 	protected function createComponentUploadForm($name) {
-   // Main object
-    $uploader = new Echo511\Plupload\Rooftop();
-	 
-    // Use magic for loading Js and Css?
-    // $uploader->disableMagic();
-
-    // Configuring paths
-    $uploader->setWwwDir(WWW_DIR) // Full path to your frontend directory
-             ->setBasePath($this->template->basePath) // BasePath provided by Nette
-             ->setTempLibsDir(WWW_DIR . '/plupload511/test'); // Full path to the location of plupload libs (js, css)
-
-    // Configuring plupload
-    $uploader->createSettings()
-             ->setRuntimes(array('html5')) // Available: gears, flash, silverlight, browserplus, html5
-             ->setMaxFileSize('1000mb')
-             ->setMaxChunkSize('1mb'); // What is chunk you can find here: http://www.plupload.com/documentation.php
-
-    // Configuring uploader
-    $uploader->createUploader()
-             ->setTempUploadsDir(WWW_DIR . '/plupload511/tempDir') // Where should be placed temporaly files
-             ->setToken("ahoj") // Resolves file names collisions in temp directory
-             ->setOnSuccess(array($this, 'onFileUploaded')); // Callback when upload is successful: returns Nette\Http\FileUpload
-	 
-    return $uploader->getComponent();
-	 }
-	public function onFileUploaded(\Nette\Http\FileUpload $upload, $token) {
-		
+		 $form = new Form($this, $name);
+		 // $form->addFile();
+		 $form->addUpload('test', 'test')
+			 ->getControlPrototype()
+			 ->multiple('multiple');
+		 $form->addSubmit('send', 'Odeslat');
+		 $form->onSuccess[] = $this->createFormSubmitted;
+		 return $form;
+	}
+	public function uploadFormSubmited($form) {
+	    \Nette\Diagnostics\Debugger::fireLog($form);
+	    
 		// ToDo!!!
 	}
 	
