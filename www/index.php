@@ -7,6 +7,9 @@
 $container = require __DIR__ . '/../app/bootstrap.php';
 
 define('WWW_DIR', __DIR__);
+define('GALLERIES_DIR', WWW_DIR . '/galleries');
+define('GALLERIES_TEMP_DIR', WWW_DIR . '/../temp/galleries');
+
 
 // Run application.
 $container->application->run();
