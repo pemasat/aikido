@@ -23,7 +23,9 @@ class GalleriesPresenter extends BasePresenter {
 		
 	}
 	
-	public function detailDefault() {
+	public function renderDetail() {
+		Nette\Diagnostics\FireLogger::log('aaaaa');
+		$this->template->photos = $this->galleriesRepository->getPhotos($this->params['id']);
 		
 	}
 
@@ -53,11 +55,10 @@ class GalleriesPresenter extends BasePresenter {
 	}
 	public function uploadFormSubmitted(Form $form) {
 		$this->galleriesRepository->addPhotos($form->values->id, $form->values->photos);
-	   /*
+		$this->flashMessage('Fotky byli úspěšně nahrány');
 		$this->redirect('Galleries:detail', array(
 			 'id' => $form->values->id
 		));
-		 */
 	}
 	
 	
