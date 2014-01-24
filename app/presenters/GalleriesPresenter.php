@@ -24,7 +24,7 @@ class GalleriesPresenter extends BasePresenter {
 	}
 	
 	public function renderDetail() {
-		Nette\Diagnostics\FireLogger::log('aaaaa');
+		$this->template->gallery = $this->galleriesRepository->getGallery($this->params['id']);
 		$this->template->photos = $this->galleriesRepository->getPhotos($this->params['id']);
 		
 	}
@@ -61,7 +61,11 @@ class GalleriesPresenter extends BasePresenter {
 		));
 	}
 	
-	
+		protected function createComponentGrid($name)
+		{
+			 $grid = new Grido\Grid($this, $name);
+			 $grid->setModel($this->context->database->table('user'));
+		}	
 /*	
 	public function renderDelete() {
 		 $this->newsRepository->delete($this->request->getParameters()['id']);

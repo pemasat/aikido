@@ -4,9 +4,9 @@
 	<dl n:foreach="$galleries as $gallery">
 		<dt>
 			{$gallery->created|date:'d.m. Y'}
-			 {$gallery->title}
-			 <a n:href="Galleries:upload id=>$gallery->id">Nahrát fotky</a>
-			 <a n:href="Galleries:delete id=>$gallery->id" alert="Opravdu chcete smazat?">Smazat</a>
+			<a n:href="Galleries:detail id=>$gallery->id">{$gallery->title}</a>
+			<a n:href="Galleries:upload id=>$gallery->id">Nahrát fotky</a>
+			<a n:href="Galleries:delete id=>$gallery->id" alert="Opravdu chcete smazat?">Smazat</a>
 		</dt>
 	</dl>
 	

@@ -11,9 +11,12 @@ class GalleriesRepository extends Repository {
 		
 	}
 	
+	public function getGallery($galleryId) {
+		return $this->connection->fetch('SELECT * FROM galleries WHERE id = '. $galleryId);
+	}
+	
 	public function getPhotos($galleryId) {
-		return $this->findBy(array('gallery_id' => $galleryId))->order('order ASC');
-		
+		return $this->connection->table('galleries_items')->where($galleryId);
 	}
 
 
@@ -57,7 +60,12 @@ class GalleriesRepository extends Repository {
 			$image = Image::fromFile($filename);
 			$image->resize(1024, NULL);
 			$image->save($finalDir . '/' . $key . '.jpg', 80, Image::JPEG);
-			
+			unset($image);
+
+			$image = Image::fromFile($filename);
+			$image->resize(120, NULL);
+			$image->save($finalDir . '/' . $key . '-prev.jpg', 80, Image::JPEG);
+
 			$actOrder++;
 		}
 

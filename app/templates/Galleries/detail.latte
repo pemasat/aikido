@@ -1,9 +1,7 @@
 {block content}
-	<h1 n:block=title>Detail</h1>
+{dump $photos}
+	<h1 n:block=title>{$gallery->title}</h1>
 	<p n:foreach="$photos as $photo">
-		{$item->key}
+		<a href="{$photo->key}.jpg"><img src="{$photo->key}-prev.jpg" /></a>
 	</p>
-
-
-
 {/block}
