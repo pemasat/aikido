@@ -1,5 +1,18 @@
 {block content}
 	<h1 n:block=title>Úvod</h1>
+	
+	<div id="promo">
+		<div class="item">
+			<h2>{$randomPerson->title}</h2>
+			<p>
+				{$randomPerson->perex}
+				<a n:href="Persons:">Více o našich členech</a>
+			</p>
+		</div>
+	</div>
+	
+	
+	Poslední novinky
 	<ul>
 		<li n:foreach="$news as $new">
                     <a n:href="News:">{$new->title}</a>

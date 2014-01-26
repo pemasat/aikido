@@ -1,0 +1,24 @@
+{block content}
+	<h1 n:block=title>Členi</h1>
+	<dl n:foreach="$persons as $item">
+		{*
+		{if $beforeYear == null && $beforeYear != 
+           {date('Y') - $item->date}*}
+                
+                <dt>
+                {ifset $item->created}
+						 {$item->created|date:'d.m. Y'}
+                {/ifset}
+                    {$item->title}
+                    <a n:href="Persons:edit id=>$item->id">Editovat</a>
+                    <a n:href="Persons:delete id=>$item->id" alert="Opravdu chcete smazat?">Smazat</a>
+		</dt>
+                <dd>
+                    {$item->content}
+                </dd>
+	</dl>
+        <p><a n:href="Persons:create">Založit nového</a></p>
+
+
+
+{/block}

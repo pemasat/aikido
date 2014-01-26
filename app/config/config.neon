@@ -33,6 +33,7 @@ common:
 		newsRepository: Aiki\NewsRepository
 		contactModel: Aiki\ContactModel
 		galleriesRepository: Aiki\GalleriesRepository
+		personsRepository: Aiki\PersonsRepository
 
 
 
