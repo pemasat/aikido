@@ -12,7 +12,7 @@ class NewsRepository extends Repository {
 	}
         
         public function create($title, $content) {
-            $this->connection->exec('INSERT INTO news', array(
+            $this->connection->query('INSERT INTO news', array(
                 'title' => $title,
                 'content' => $content
             ));
@@ -20,7 +20,7 @@ class NewsRepository extends Repository {
         }
         
         public function edit($id, $title, $content) {
-            $this->connection->exec('UPDATE news SET ? WHERE id=?', array(
+            $this->connection->query('UPDATE news SET ? WHERE id=?', array(
                 'title' => $title,
                 'content' => $content
             ), $id);
@@ -28,7 +28,7 @@ class NewsRepository extends Repository {
         }
         
         public function delete($id) {
-            return $this->connection->exec('DELETE FROM news WHERE id=?', $id);
+            return $this->connection->query('DELETE FROM news WHERE id=?', $id);
             
         }
 

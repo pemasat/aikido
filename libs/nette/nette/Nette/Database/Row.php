@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Database;
@@ -18,22 +14,10 @@ use Nette;
  * Represents a single table row.
  *
  * @author     David Grudl
+ * @author     Jan Skrasek
  */
-class Row extends Nette\ArrayHash
+class Row extends Nette\ArrayHash implements IRow
 {
-
-	public function __construct(Statement $statement)
-	{
-		$data = array();
-		foreach ((array) $this as $key => $value) {
-			$data[$key] = $value;
-			unset($this->$key);
-		}
-		foreach ($statement->normalizeRow($data) as $key => $value) {
-			$this->$key = $value;
-		}
-	}
-
 
 	/**
 	 * Returns a item.
@@ -53,10 +37,15 @@ class Row extends Nette\ArrayHash
 	}
 
 
+	/**
+	 * Checks if $key exists.
+	 * @param  mixed  key or index
+	 * @return bool
+	 */
 	public function offsetExists($key)
 	{
 		if (is_int($key)) {
-			return (bool) array_slice((array) $this, $key, 1);
+			return (bool) current(array_slice((array) $this, $key, 1));
 		}
 		return parent::offsetExists($key);
 	}

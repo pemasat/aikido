@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\DI;
@@ -19,7 +15,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-final class Helpers
+class Helpers
 {
 
 	/**
@@ -39,8 +35,12 @@ final class Helpers
 			}
 			return $res;
 
-		} elseif ($var instanceof Statement) {
-			return new Statement(self::expand($var->entity, $params, $recursive), self::expand($var->arguments, $params, $recursive));
+		} elseif ($var instanceof \stdClass || $var instanceof Statement) {
+			$res = clone $var;
+			foreach ($var as $key => $val) {
+				$res->$key = self::expand($val, $params, $recursive);
+			}
+			return $res;
 
 		} elseif (!is_string($var)) {
 			return $var;
@@ -73,24 +73,6 @@ final class Helpers
 			}
 		}
 		return $res;
-	}
-
-
-	/**
-	 * Expand counterpart.
-	 * @param  mixed
-	 * @return mixed
-	 */
-	public static function escape($value)
-	{
-		if (is_array($value)) {
-			array_walk_recursive($value, function(&$val) {
-				$val = is_string($val) ? str_replace('%', '%%', $val) : $val;
-			});
-		} elseif (is_string($value)) {
-			$value = str_replace('%', '%%', $value);
-		}
-		return $value;
 	}
 
 
@@ -137,7 +119,7 @@ final class Helpers
 				$optCount++;
 
 			} else {
-				throw new ServiceCreationException("$parameter has no type hint, so its value must be specified.");
+				throw new ServiceCreationException("Parameter $parameter has no type hint, so its value must be specified.");
 			}
 		}
 
@@ -153,5 +135,35 @@ final class Helpers
 
 		return $optCount ? array_slice($res, 0, -$optCount) : $res;
 	}
+
+
+	/**
+	 * Generates list of properties with annotation @inject.
+	 * @return array
+	 */
+	public static function getInjectProperties(Nette\Reflection\ClassType $class)
+	{
+		$res = array();
+		foreach ($class->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+			$type = $property->getAnnotation('var');
+			if (!$property->getAnnotation('inject')) {
+				continue;
+
+			} elseif (!$type) {
+				throw new Nette\InvalidStateException("Property $property has not @var annotation.");
+
+			} elseif (!class_exists($type) && !interface_exists($type)) {
+				if ($type[0] !== '\\') {
+					$type = $property->getDeclaringClass()->getNamespaceName() . '\\' . $type;
+				}
+				if (!class_exists($type) && !interface_exists($type)) {
+					throw new Nette\InvalidStateException("Please use a fully qualified name of class/interface in @var annotation at $property property. Class '$type' cannot be found.");
+				}
+			}
+			$res[$property->getName()] = $type;
+		}
+		return $res;
+	}
+
 
 }

@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Utils;
@@ -59,7 +55,7 @@ class Finder extends Nette\Object implements \IteratorAggregate
 			$mask = func_get_args();
 		}
 		$finder = new static;
-		return $finder->select(array(), 'isDir')->select($mask, 'isFile');
+		return $finder->select($mask, 'isDir')->select($mask, 'isFile');
 	}
 
 
@@ -222,15 +218,11 @@ class Finder extends Nette\Object implements \IteratorAggregate
 	 */
 	private function buildIterator($path)
 	{
-		if (PHP_VERSION_ID < 50301) {
-			$iterator = new Nette\Utils\RecursiveDirectoryIteratorFixed($path);
-		} else {
-			$iterator = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
-		}
+		$iterator = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
 
 		if ($this->exclude) {
 			$filters = $this->exclude;
-			$iterator = new Nette\Iterators\RecursiveFilter($iterator, function($file) use ($filters) {
+			$iterator = new Nette\Iterators\RecursiveFilter($iterator, function($foo, $foo, $file) use ($filters) {
 				if (!$file->isDot() && !$file->isFile()) {
 					foreach ($filters as $filter) {
 						if (!call_user_func($filter, $file)) {
@@ -249,7 +241,7 @@ class Finder extends Nette\Object implements \IteratorAggregate
 
 		if ($this->groups) {
 			$groups = $this->groups;
-			$iterator = new Nette\Iterators\Filter($iterator, function($file) use ($groups) {
+			$iterator = new Nette\Iterators\Filter($iterator, function($foo, $foo, $file) use ($groups) {
 				foreach ($groups as $filters) {
 					foreach ($filters as $filter) {
 						if (!call_user_func($filter, $file)) {
@@ -388,16 +380,4 @@ class Finder extends Nette\Object implements \IteratorAggregate
 		}
 	}
 
-}
-
-
-if (PHP_VERSION_ID < 50301) {
-	/** @internal */
-	class RecursiveDirectoryIteratorFixed extends \RecursiveDirectoryIterator
-	{
-		function hasChildren()
-		{
-			return parent::hasChildren(TRUE);
-		}
-	}
 }

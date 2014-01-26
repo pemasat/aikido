@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Database\Drivers;
@@ -55,7 +51,7 @@ class OdbcDriver extends Nette\Object implements Nette\Database\ISupplementalDri
 	/**
 	 * Formats date-time for use in a SQL statement.
 	 */
-	public function formatDateTime(\DateTime $value)
+	public function formatDateTime(/*\DateTimeInterface*/ $value)
 	{
 		return $value->format("#m/d/Y H:i:s#");
 	}
@@ -77,11 +73,14 @@ class OdbcDriver extends Nette\Object implements Nette\Database\ISupplementalDri
 	public function applyLimit(& $sql, $limit, $offset)
 	{
 		if ($limit >= 0) {
-			$sql = 'SELECT TOP ' . (int) $limit . ' * FROM (' . $sql . ')';
+			$sql = preg_replace('#^\s*(SELECT|UPDATE|DELETE)#i', '$0 TOP ' . (int) $limit, $sql, 1, $count);
+			if (!$count) {
+				throw new Nette\InvalidArgumentException('SQL query must begin with SELECT, UPDATE or DELETE command.');
+			}
 		}
 
 		if ($offset) {
-			throw new Nette\InvalidArgumentException('Offset is not implemented in driver odbc.');
+			throw new Nette\NotSupportedException('Offset is not supported by this database.');
 		}
 	}
 
@@ -89,7 +88,7 @@ class OdbcDriver extends Nette\Object implements Nette\Database\ISupplementalDri
 	/**
 	 * Normalizes result row.
 	 */
-	public function normalizeRow($row, $statement)
+	public function normalizeRow($row)
 	{
 		return $row;
 	}
@@ -135,11 +134,20 @@ class OdbcDriver extends Nette\Object implements Nette\Database\ISupplementalDri
 
 
 	/**
+	 * Returns associative array of detected types (IReflection::FIELD_*) in result set.
+	 */
+	public function getColumnTypes(\PDOStatement $statement)
+	{
+		return Nette\Database\Helpers::detectTypes($statement);
+	}
+
+
+	/**
 	 * @return bool
 	 */
 	public function isSupported($item)
 	{
-		return $item === self::SUPPORT_COLUMNS_META;
+		return $item === self::SUPPORT_SUBSELECT;
 	}
 
 }

@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Http;
@@ -23,7 +19,7 @@ use Nette;
  * @property-read bool $sent
  * @property-read array $headers
  */
-final class Response extends Nette\Object implements IResponse
+class Response extends Nette\Object implements IResponse
 {
 	/** @var bool  Send invisible garbage for IE 6? */
 	private static $fixIE = TRUE;
@@ -44,6 +40,17 @@ final class Response extends Nette\Object implements IResponse
 	private $code = self::S200_OK;
 
 
+	public function __construct()
+	{
+		if (PHP_VERSION_ID >= 50400) {
+			if (is_int(http_response_code())) {
+				$this->code = http_response_code();
+			}
+			header_register_callback($this->removeDuplicateCookies);
+		}
+	}
+
+
 	/**
 	 * Sets HTTP response code.
 	 * @param  int
@@ -54,18 +61,13 @@ final class Response extends Nette\Object implements IResponse
 	public function setCode($code)
 	{
 		$code = (int) $code;
-
 		if ($code < 100 || $code > 599) {
 			throw new Nette\InvalidArgumentException("Bad HTTP response '$code'.");
-
-		} elseif (headers_sent($file, $line)) {
-			throw new Nette\InvalidStateException("Cannot set HTTP code after HTTP headers have been sent" . ($file ? " (output started at $file:$line)." : "."));
-
-		} else {
-			$this->code = $code;
-			$protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
-			header($protocol . ' ' . $code, TRUE, $code);
 		}
+		self::checkHeaders();
+		$this->code = $code;
+		$protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
+		header($protocol . ' ' . $code, TRUE, $code);
 		return $this;
 	}
 
@@ -89,10 +91,7 @@ final class Response extends Nette\Object implements IResponse
 	 */
 	public function setHeader($name, $value)
 	{
-		if (headers_sent($file, $line)) {
-			throw new Nette\InvalidStateException("Cannot send header after HTTP headers have been sent" . ($file ? " (output started at $file:$line)." : "."));
-		}
-
+		self::checkHeaders();
 		if ($value === NULL && function_exists('header_remove')) {
 			header_remove($name);
 		} elseif (strcasecmp($name, 'Content-Length') === 0 && ini_get('zlib.output_compression')) {
@@ -113,10 +112,7 @@ final class Response extends Nette\Object implements IResponse
 	 */
 	public function addHeader($name, $value)
 	{
-		if (headers_sent($file, $line)) {
-			throw new Nette\InvalidStateException("Cannot send header after HTTP headers have been sent" . ($file ? " (output started at $file:$line)." : "."));
-		}
-
+		self::checkHeaders();
 		header($name . ': ' . $value, FALSE, $this->code);
 		return $this;
 	}
@@ -145,16 +141,9 @@ final class Response extends Nette\Object implements IResponse
 	 */
 	public function redirect($url, $code = self::S302_FOUND)
 	{
-		if (isset($_SERVER['SERVER_SOFTWARE']) && preg_match('#^Microsoft-IIS/[1-5]#', $_SERVER['SERVER_SOFTWARE'])
-			&& $this->getHeader('Set-Cookie') !== NULL
-		) {
-			$this->setHeader('Refresh', "0;url=$url");
-			return;
-		}
-
 		$this->setCode($code);
 		$this->setHeader('Location', $url);
-		echo "<h1>Redirect</h1>\n\n<p><a href=\"" . htmlSpecialChars($url) . "\">Please click here to continue</a>.</p>";
+		echo "<h1>Redirect</h1>\n\n<p><a href=\"" . htmlSpecialChars($url, ENT_IGNORE | ENT_QUOTES) . "\">Please click here to continue</a>.</p>";
 	}
 
 
@@ -265,10 +254,7 @@ final class Response extends Nette\Object implements IResponse
 	 */
 	public function setCookie($name, $value, $time, $path = NULL, $domain = NULL, $secure = NULL, $httpOnly = NULL)
 	{
-		if (headers_sent($file, $line)) {
-			throw new Nette\InvalidStateException("Cannot set cookie after HTTP headers have been sent" . ($file ? " (output started at $file:$line)." : "."));
-		}
-
+		self::checkHeaders();
 		setcookie(
 			$name,
 			$value,
@@ -278,9 +264,23 @@ final class Response extends Nette\Object implements IResponse
 			$secure === NULL ? $this->cookieSecure : (bool) $secure,
 			$httpOnly === NULL ? $this->cookieHttpOnly : (bool) $httpOnly
 		);
-
 		$this->removeDuplicateCookies();
 		return $this;
+	}
+
+
+	/**
+	 * Deletes a cookie.
+	 * @param  string name of the cookie.
+	 * @param  string
+	 * @param  string
+	 * @param  bool
+	 * @return void
+	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
+	 */
+	public function deleteCookie($name, $path = NULL, $domain = NULL, $secure = NULL)
+	{
+		$this->setCookie($name, FALSE, 0, $path, $domain, $secure);
 	}
 
 
@@ -298,11 +298,7 @@ final class Response extends Nette\Object implements IResponse
 		foreach (headers_list() as $header) {
 			if (preg_match('#^Set-Cookie: .+?=#', $header, $m)) {
 				$flatten[$m[0]] = $header;
-				if (PHP_VERSION_ID < 50300) { // multiple deleting due PHP bug #61605
-					header('Set-Cookie:');
-				} else {
-					header_remove('Set-Cookie');
-				}
+				header_remove('Set-Cookie');
 			}
 		}
 		foreach (array_values($flatten) as $key => $header) {
@@ -311,18 +307,13 @@ final class Response extends Nette\Object implements IResponse
 	}
 
 
-	/**
-	 * Deletes a cookie.
-	 * @param  string name of the cookie.
-	 * @param  string
-	 * @param  string
-	 * @param  bool
-	 * @return void
-	 * @throws Nette\InvalidStateException  if HTTP headers have been sent
-	 */
-	public function deleteCookie($name, $path = NULL, $domain = NULL, $secure = NULL)
+	private function checkHeaders()
 	{
-		$this->setCookie($name, FALSE, 0, $path, $domain, $secure);
+		if (headers_sent($file, $line)) {
+			throw new Nette\InvalidStateException('Cannot send header after HTTP headers have been sent' . ($file ? " (output started at $file:$line)." : '.'));
+		} elseif (ob_get_length() && ($info = ob_get_status(TRUE)) && $info[0]['chunk_size']) {
+			trigger_error('Possible problem: you are sending a HTTP header while already having some data in output buffer. Try OutputDebugger or start session earlier.', E_USER_NOTICE);
+		}
 	}
 
 }

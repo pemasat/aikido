@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Caching\Storages;
@@ -339,7 +335,6 @@ class FileStorage extends Nette\Object implements Nette\Caching\IStorage
 			$meta = stream_get_contents($handle, $size, self::META_HEADER_LEN);
 			$meta = @unserialize($meta); // intentionally @
 			if (is_array($meta)) {
-				fseek($handle, $size + self::META_HEADER_LEN); // needed by PHP < 5.2.6
 				$meta[self::FILE] = $file;
 				$meta[self::HANDLE] = $handle;
 				return $meta;

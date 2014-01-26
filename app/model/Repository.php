@@ -6,7 +6,7 @@ abstract class Repository extends Nette\Object {
     /** @var Nette\Database\Connection */
     protected $connection;
 
-    public function __construct(Nette\Database\Connection $db) {
+    public function __construct(Nette\Database\Context $db) {
         $this->connection = $db;
     }
 
@@ -18,6 +18,7 @@ abstract class Repository extends Nette\Object {
         // název tabulky odvodíme z názvu třídy
         preg_match('#(\w+)Repository$#', get_class($this), $m);
         return $this->connection->table(lcfirst($m[1]));
+		  
     }
 
     /**

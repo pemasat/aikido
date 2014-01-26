@@ -2,17 +2,14 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Templating;
 
 use Nette,
-	Nette\Caching;
+	Nette\Caching,
+	Nette\Utils\Callback;
 
 
 /**
@@ -141,7 +138,7 @@ class Template extends Nette\Object implements ITemplate
 		$code = $this->getSource();
 		foreach ($this->filters as $filter) {
 			$code = self::extractPhp($code, $blocks);
-			$code = $filter/*5.2*->invoke*/($code);
+			$code = call_user_func($filter, $code);
 			$code = strtr($code, $blocks); // put PHP code back
 		}
 
@@ -159,11 +156,7 @@ class Template extends Nette\Object implements ITemplate
 	 */
 	public function registerFilter($callback)
 	{
-		$callback = new Nette\Callback($callback);
-		if (in_array($callback, $this->filters)) {
-			throw new Nette\InvalidStateException("Filter '$callback' was registered twice.");
-		}
-		$this->filters[] = $callback;
+		$this->filters[] = Callback::check($callback);
 		return $this;
 	}
 
@@ -172,7 +165,7 @@ class Template extends Nette\Object implements ITemplate
 	 * Returns all registered compile-time filters.
 	 * @return array
 	 */
-	final public function getFilters()
+	public function getFilters()
 	{
 		return $this->filters;
 	}
@@ -186,7 +179,7 @@ class Template extends Nette\Object implements ITemplate
 	 */
 	public function registerHelper($name, $callback)
 	{
-		$this->helpers[strtolower($name)] = new Nette\Callback($callback);
+		$this->helpers[strtolower($name)] = $callback;
 		return $this;
 	}
 
@@ -198,7 +191,7 @@ class Template extends Nette\Object implements ITemplate
 	 */
 	public function registerHelperLoader($callback)
 	{
-		$this->helperLoaders[] = new Nette\Callback($callback);
+		array_unshift($this->helperLoaders, $callback);
 		return $this;
 	}
 
@@ -207,7 +200,7 @@ class Template extends Nette\Object implements ITemplate
 	 * Returns all registered run-time helpers.
 	 * @return array
 	 */
-	final public function getHelpers()
+	public function getHelpers()
 	{
 		return $this->helpers;
 	}
@@ -217,7 +210,7 @@ class Template extends Nette\Object implements ITemplate
 	 * Returns all registered template run-time helper loaders.
 	 * @return array
 	 */
-	final public function getHelperLoaders()
+	public function getHelperLoaders()
 	{
 		return $this->helperLoaders;
 	}
@@ -234,16 +227,16 @@ class Template extends Nette\Object implements ITemplate
 		$lname = strtolower($name);
 		if (!isset($this->helpers[$lname])) {
 			foreach ($this->helperLoaders as $loader) {
-				$helper = $loader/*5.2*->invoke*/($lname);
+				$helper = Callback::invoke($loader, $lname);
 				if ($helper) {
 					$this->registerHelper($lname, $helper);
-					return $this->helpers[$lname]->invokeArgs($args);
+					return Callback::invokeArgs($this->helpers[$lname], $args);
 				}
 			}
 			return parent::__call($name, $args);
 		}
 
-		return $this->helpers[$lname]->invokeArgs($args);
+		return Callback::invokeArgs($this->helpers[$lname], $args);
 	}
 
 
@@ -296,22 +289,6 @@ class Template extends Nette\Object implements ITemplate
 	{
 		$this->params['template'] = $this;
 		return $this->params;
-	}
-
-
-	/** @deprecated */
-	function setParams(array $params)
-	{
-		trigger_error(__METHOD__ . '() is deprecated; use setParameters() instead.', E_USER_WARNING);
-		return $this->setParameters($params);
-	}
-
-
-	/** @deprecated */
-	function getParams()
-	{
-		trigger_error(__METHOD__ . '() is deprecated; use getParameters() instead.', E_USER_WARNING);
-		return $this->getParameters();
 	}
 
 

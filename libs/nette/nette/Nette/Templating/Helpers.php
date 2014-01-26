@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Templating;
@@ -22,7 +18,7 @@ use Nette,
  *
  * @author     David Grudl
  */
-final class Helpers
+class Helpers
 {
 	private static $helpers = array(
 		'normalize' => 'Nette\Utils\Strings::normalize',
@@ -58,7 +54,7 @@ final class Helpers
 	public static function loader($helper)
 	{
 		if (method_exists(__CLASS__, $helper)) {
-			return new Nette\Callback(__CLASS__, $helper);
+			return array(__CLASS__, $helper);
 		} elseif (isset(self::$helpers[$helper])) {
 			return self::$helpers[$helper];
 		}
@@ -118,7 +114,7 @@ final class Helpers
 
 
 	/**
-	 * Escapes string for use inside JavaScript template.
+	 * Escapes variables for use inside <script>.
 	 * @param  mixed  UTF-8 encoding
 	 * @return string
 	 */
@@ -127,7 +123,7 @@ final class Helpers
 		if (is_object($s) && ($s instanceof ITemplate || $s instanceof Html || $s instanceof Form)) {
 			$s = $s->__toString(TRUE);
 		}
-		return str_replace(']]>', ']]\x3E', Nette\Utils\Json::encode($s));
+		return str_replace(array(']]>', '<!'), array(']]\x3E', '\x3C!'), Nette\Utils\Json::encode($s));
 	}
 
 
@@ -140,6 +136,17 @@ final class Helpers
 	{
 		// http://www.ietf.org/rfc/rfc5545.txt
 		return addcslashes(preg_replace('#[\x00-\x08\x0B\x0C-\x1F]+#', '', $s), "\";\\,:\n");
+	}
+
+
+	/**
+	 * Sanitizes string for use inside href attribute.
+	 * @param  string
+	 * @return string
+	 */
+	public static function safeUrl($s)
+	{
+		return preg_match('#^(https?://.+|ftp://.+|mailto:.+|[^:]+)\z#i', $s) ? $s : '';
 	}
 
 
@@ -199,6 +206,21 @@ final class Helpers
 		return Strings::contains($format, '%')
 			? strftime($format, $time->format('U')) // formats according to locales
 			: $time->format($format); // formats using date()
+	}
+
+
+	/**
+	 * Date/time modification.
+	 * @param  string|int|DateTime
+	 * @param  string|int
+	 * @param  string
+	 * @return Nette\DateTime
+	 */
+	public static function modifyDate($time, $delta, $unit = NULL)
+	{
+		return $time == NULL // intentionally ==
+			? NULL
+			: Nette\DateTime::from($time)->modify($delta . $unit);
 	}
 
 
@@ -266,7 +288,7 @@ final class Helpers
 	 * @param  mixed
 	 * @return string
 	 */
-	public static function null($value)
+	public static function null()
 	{
 		return '';
 	}

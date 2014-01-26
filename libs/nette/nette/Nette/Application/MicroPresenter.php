@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace NetteModule;
@@ -43,7 +39,7 @@ class MicroPresenter extends Nette\Object implements Application\IPresenter
 	 * Gets the context.
 	 * @return \SystemContainer|Nette\DI\Container
 	 */
-	final public function getContext()
+	public function getContext()
 	{
 		return $this->context;
 	}
@@ -59,7 +55,7 @@ class MicroPresenter extends Nette\Object implements Application\IPresenter
 		$httpRequest = $this->context->getByType('Nette\Http\IRequest');
 		if (!$httpRequest->isAjax() && ($request->isMethod('get') || $request->isMethod('head'))) {
 			$refUrl = clone $httpRequest->getUrl();
-			$url = $this->context->getService('router')->constructUrl($request, $refUrl->setPath($refUrl->getScriptPath()));
+			$url = $this->context->getByType('Nette\Application\IRouter')->constructUrl($request, $refUrl->setPath($refUrl->getScriptPath()));
 			if ($url !== NULL && !$httpRequest->getUrl()->isEqual($url)) {
 				return new Responses\RedirectResponse($url, Http\IResponse::S301_MOVED_PERMANENTLY);
 			}
@@ -70,8 +66,18 @@ class MicroPresenter extends Nette\Object implements Application\IPresenter
 			throw new Application\BadRequestException("Parameter callback is missing.");
 		}
 		$params['presenter'] = $this;
-		$callback = new Nette\Callback($params['callback']);
-		$response = $callback->invokeArgs(Application\UI\PresenterComponentReflection::combineArgs($callback->toReflection(), $params));
+		$callback = $params['callback'];
+		$reflection = Nette\Utils\Callback::toReflection(Nette\Utils\Callback::check($callback));
+		$params = Application\UI\PresenterComponentReflection::combineArgs($reflection, $params);
+
+		foreach ($reflection->getParameters() as $param) {
+			if ($param->getClassName()) {
+				unset($params[$param->getPosition()]);
+			}
+		}
+		$params = Nette\DI\Helpers::autowireArguments($reflection, $params, $this->context);
+
+		$response = call_user_func_array($callback, $params);
 
 		if (is_string($response)) {
 			$response = array($response, array());
@@ -123,7 +129,7 @@ class MicroPresenter extends Nette\Object implements Application\IPresenter
 	 * Redirects to another URL.
 	 * @param  string
 	 * @param  int HTTP code
-	 * @return void
+	 * @return Nette\Application\Responses\RedirectResponse
 	 */
 	public function redirectUrl($url, $code = Http\IResponse::S302_FOUND)
 	{

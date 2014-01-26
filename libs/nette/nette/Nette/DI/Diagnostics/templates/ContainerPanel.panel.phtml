@@ -3,7 +3,7 @@
 namespace Nette\DI\Diagnostics;
 
 use Nette,
-	Nette\Diagnostics\Helpers;
+	Nette\Diagnostics\Dumper;
 
 ?>
 <style class="nette-debug">
@@ -15,13 +15,6 @@ use Nette,
 	#nette-debug .nette-ContainerPanel table {
 		width: 100%;
 		white-space: nowrap;
-	}
-
-	#nette-debug .nette-ContainerPanel-parameters pre {
-		background: #FDF5CE;
-		padding: .4em .7em;
-		border: 1px dotted silver;
-		overflow: auto;
 	}
 
 	#nette-debug .nette-ContainerPanel .created {
@@ -42,7 +35,7 @@ use Nette,
 	<h2>Parameters</h2>
 
 	<div class="nette-ContainerPanel-parameters">
-		<?php echo Helpers::clickableDump($this->container->parameters); ?>
+		<?php echo Dumper::toHtml($this->container->parameters); ?>
 	</div>
 
 	<h2>Services</h2>
@@ -53,25 +46,25 @@ use Nette,
 			<th>Name</th>
 			<th>Autowired</th>
 			<th>Service</th>
-			<th>Meta</th>
+			<th>Tags</th>
 		</tr>
 		</thead>
 		<tbody>
 		<?php foreach ($services as $name => $class): ?>
-		<?php $autowired = array_keys($container->classes, $name); ?>
+		<?php $autowired = in_array($name, $container->findByType($class)); ?>
 		<tr>
-			<td class="<?php echo isset($registry[$name]) ? 'created' : '' ?>"><?php echo htmlSpecialChars(str_replace('.', '->', $name)) ?></td>
-			<td title="<?php echo htmlSpecialChars(implode(" \n", $autowired)) ?>" class="<?php echo $autowired ? 'yes' : '' ?>"><?php echo $autowired ? 'yes' : 'no' ?></td>
+			<td class="<?php echo isset($registry[$name]) ? 'created' : '' ?>"><?php echo htmlSpecialChars($name) ?></td>
+			<td class="<?php echo $autowired ? 'yes' : '' ?>"><?php echo $autowired ? 'yes' : 'no' ?></td>
 			<td>
-				<?php if (isset($registry[$name]) && !$registry[$name] instanceof Nette\DI\Container && !$registry[$name] instanceof Nette\DI\NestedAccessor): ?>
-					<?php echo Helpers::clickableDump($registry[$name], TRUE); ?>
+				<?php if (isset($registry[$name]) && !$registry[$name] instanceof Nette\DI\Container): ?>
+					<?php echo Dumper::toHtml($registry[$name], array(Dumper::COLLAPSE => TRUE)); ?>
 				<?php elseif (isset($registry[$name])): ?>
 					<code><?php echo get_class($registry[$name]) ?></code>
 				<?php elseif (is_string($class)): ?>
 					<code><?php echo htmlSpecialChars($class) ?></code>
 				<?php endif ?>
 			</td>
-			<td><?php if (isset($container->meta[$name])) { echo Helpers::clickableDump($container->meta[$name], TRUE); } ?></td>
+			<td><?php if (isset($tags[$name])) { echo Dumper::toHtml($tags[$name], array(Dumper::COLLAPSE => TRUE)); } ?></td>
 		</tr>
 		<?php endforeach ?>
 		</tbody>
@@ -89,7 +82,7 @@ use Nette,
 		<tbody>
 		<?php foreach ($factories as $name => $class): ?>
 		<tr>
-			<td><?php echo htmlSpecialChars(str_replace('.', '->', $name)) ?>()</td>
+			<td><?php echo htmlSpecialChars($name) ?>()</td>
 			<td><code><?php echo htmlSpecialChars($class) ?><code></td>
 		</tr>
 		<?php endforeach ?>

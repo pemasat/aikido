@@ -21,7 +21,7 @@ class GalleriesRepository extends Repository {
 
 
 	public function create($title, $date) {
-			$this->connection->exec('INSERT INTO galleries', array(
+			$this->connection->query('INSERT INTO galleries', array(
 					'title' => $title,
 					'created' => $date
 			));
@@ -51,7 +51,7 @@ class GalleriesRepository extends Repository {
 
 			$key = time() . '' . $actOrder;
 
-			$this->connection->exec('INSERT INTO galleries_items', array(
+			$this->connection->query('INSERT INTO galleries_items', array(
 				'order' => $actOrder,
 				'key' => $key,
 				'gallery_id' => $id

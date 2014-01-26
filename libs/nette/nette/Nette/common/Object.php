@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette;
@@ -61,9 +57,9 @@ abstract class Object
 	 * Access to reflection.
 	 * @return Nette\Reflection\ClassType
 	 */
-	public /**/static/**/ function getReflection()
+	public static function getReflection()
 	{
-		return new Reflection\ClassType(/*5.2*$this*//**/get_called_class()/**/);
+		return new Reflection\ClassType(get_called_class());
 	}
 
 
@@ -105,12 +101,13 @@ abstract class Object
 			$class = get_called_class();
 		} else {
 			list($class, $name) = explode('::', $name);
+			$rc = new \ReflectionClass($class);
+			$class = $rc->getName();
 		}
-		$class = new Reflection\ClassType($class);
 		if ($callback === NULL) {
-			return $class->getExtensionMethod($name);
+			return ObjectMixin::getExtensionMethod($class, $name);
 		} else {
-			$class->setExtensionMethod($name, $callback);
+			ObjectMixin::setExtensionMethod($class, $name, $callback);
 		}
 	}
 
@@ -136,7 +133,7 @@ abstract class Object
 	 */
 	public function __set($name, $value)
 	{
-		return ObjectMixin::set($this, $name, $value);
+		ObjectMixin::set($this, $name, $value);
 	}
 
 

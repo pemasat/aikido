@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\ComponentModel;
@@ -118,7 +114,7 @@ class Container extends Component implements IContainer
 	 * @param  bool   throw exception if component doesn't exist?
 	 * @return IComponent|NULL
 	 */
-	final public function getComponent($name, $need = TRUE)
+	public function getComponent($name, $need = TRUE)
 	{
 		if (is_int($name)) {
 			$name = (string) $name;
@@ -134,7 +130,10 @@ class Container extends Component implements IContainer
 			}
 
 			if ($name === '') {
-				throw new Nette\InvalidArgumentException("Component or subcomponent name must not be empty string.");
+				if ($need) {
+					throw new Nette\InvalidArgumentException("Component or subcomponent name must not be empty string.");
+				}
+				return;
 			}
 		}
 
@@ -183,12 +182,12 @@ class Container extends Component implements IContainer
 
 
 	/**
-	 * Iterates over a components.
+	 * Iterates over components.
 	 * @param  bool    recursive?
 	 * @param  string  class types filter
 	 * @return \ArrayIterator
 	 */
-	final public function getComponents($deep = FALSE, $filterType = NULL)
+	public function getComponents($deep = FALSE, $filterType = NULL)
 	{
 		$iterator = new RecursiveComponentIterator($this->components);
 		if ($deep) {
@@ -196,7 +195,9 @@ class Container extends Component implements IContainer
 			$iterator = new \RecursiveIteratorIterator($iterator, $deep);
 		}
 		if ($filterType) {
-			$iterator = new Nette\Iterators\InstanceFilter($iterator, $filterType);
+			$iterator = new Nette\Iterators\Filter($iterator, function($item) use ($filterType) {
+				return $item instanceof $filterType;
+			});
 		}
 		return $iterator;
 	}

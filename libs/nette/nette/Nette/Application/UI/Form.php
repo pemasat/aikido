@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Application\UI;
@@ -63,11 +59,13 @@ class Form extends Nette\Forms\Form implements ISignalReceiver
 				$this->getElementPrototype()->id = 'frm-' . $name;
 			}
 
-			$this->setAction(new Link(
-				$presenter,
-				$name . self::NAME_SEPARATOR . 'submit!',
-				array()
-			));
+			if (!$this->getAction()) {
+				$this->setAction(new Link(
+					$presenter,
+					$name . self::NAME_SEPARATOR . 'submit!',
+					array()
+				));
+			}
 
 			if (iterator_count($this->getControls()) && $this->isSubmitted()) {
 				foreach ($this->getControls() as $control) {

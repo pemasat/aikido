@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette;
@@ -29,17 +25,6 @@ class ArgumentOutOfRangeException extends \InvalidArgumentException
  */
 class InvalidStateException extends \RuntimeException
 {
-	/*5.2*
-	public function __construct($message = '', $code = 0, \Exception $previous = NULL)
-	{
-		if (PHP_VERSION_ID < 50300) {
-			$this->previous = $previous;
-			parent::__construct($message, $code);
-		} else {
-			parent::__construct($message, $code, $previous);
-		}
-	}
-	*/
 }
 
 
@@ -100,7 +85,6 @@ class DirectoryNotFoundException extends IOException
 }
 
 
-/**/
 /**
  * The exception that is thrown when an argument does not match with the expected value.
  */
@@ -123,7 +107,6 @@ class OutOfRangeException extends \OutOfRangeException
 class UnexpectedValueException extends \UnexpectedValueException
 {
 }
-/**/
 
 
 /**
@@ -138,7 +121,6 @@ class StaticClassException extends \LogicException
  * The exception that indicates errors that can not be recovered from. Execution of
  * the script should be halted.
  */
-/**/
 class FatalErrorException extends \ErrorException
 {
 
@@ -146,34 +128,7 @@ class FatalErrorException extends \ErrorException
 	{
 		parent::__construct($message, $code, $severity, $file, $line, $previous);
 		$this->context = $context;
+		trigger_error(__CLASS__ . ' is deprecated, use ErrorException.', E_USER_DEPRECATED);
 	}
 
 }
-/**/
-
-/*5.2*
-class FatalErrorException extends \Exception // ErrorException is corrupted in PHP < 5.3
-{
-	private $severity;
-
-	public function __construct($message, $code, $severity, $file, $line, $context, Exception $previous = NULL)
-	{
-		if (PHP_VERSION_ID < 50300) {
-			$this->previous = $previous;
-			parent::__construct($message, $code);
-		} else {
-			parent::__construct($message, $code, $previous);
-		}
-		$this->severity = $severity;
-		$this->file = $file;
-		$this->line = $line;
-		$this->context = $context;
-	}
-
-	public function getSeverity()
-	{
-		return $this->severity;
-	}
-
-}
-*/

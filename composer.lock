@@ -1,81 +1,45 @@
 {
-    "hash": "5efdb90f9f21855eae044af3711d5ce0",
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "31395c57e643be36c77032c542b45760",
     "packages": [
         {
-            "name": "jkuchar/multiplefileupload",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jkuchar/MultipleFileUpload.git",
-                "reference": "78147ee2bcda58149b3a1b6d6a5e36d9d4fc7d8e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jkuchar/MultipleFileUpload/zipball/78147ee2bcda58149b3a1b6d6a5e36d9d4fc7d8e",
-                "reference": "78147ee2bcda58149b3a1b6d6a5e36d9d4fc7d8e",
-                "shasum": ""
-            },
-            "require": {
-                "nette/nette": ">= 2.0",
-                "php": ">= 5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "MultipleFileUpload": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "New BSD"
-            ],
-            "authors": [
-                {
-                    "name": "Jan Kuchař",
-                    "homepage": "http://www.jankuchar.cz"
-                }
-            ],
-            "description": "Multiple upload form control for Nette framework.",
-            "time": "2013-05-27 12:23:07"
-        },
-        {
             "name": "nette/nette",
-            "version": "v2.0.12",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/nette.git",
-                "reference": "80a7e460badc3d71b1469bb23810ebf235b06b11"
+                "reference": "e5af13a9d662972e9e34272771e52b832629bb91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/nette/zipball/80a7e460badc3d71b1469bb23810ebf235b06b11",
-                "reference": "80a7e460badc3d71b1469bb23810ebf235b06b11",
+                "url": "https://api.github.com/repos/nette/nette/zipball/e5af13a9d662972e9e34272771e52b832629bb91",
+                "reference": "e5af13a9d662972e9e34272771e52b832629bb91",
                 "shasum": ""
             },
             "require": {
                 "ext-iconv": "*",
                 "ext-tokenizer": "*",
-                "php": ">=5.3.0"
+                "php": ">=5.3.1"
             },
             "require-dev": {
-                "nette/tester": "0.9.*"
+                "nette/tester": "~0.9.5"
             },
             "suggest": {
                 "ext-fileinfo": "*",
                 "ext-gd": "*",
                 "ext-mbstring": "*",
-                "ext-memcache": "*",
                 "ext-pdo": "*"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.1-dev"
-                }
-            },
             "autoload": {
+                "classmap": [
+                    "Nette/"
+                ],
                 "files": [
-                    "Nette/loader.php"
+                    "Nette/common/shortcuts.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -99,79 +63,21 @@
             "keywords": [
                 "Forms",
                 "database",
-                "dbal",
                 "debugging",
                 "framework",
-                "images",
-                "latte",
                 "mailing",
-                "micro",
                 "mvc",
-                "neon",
                 "templating"
             ],
-            "time": "2013-08-07 23:14:19"
+            "time": "2013-12-31 00:08:21"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "nette/tester",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/tester.git",
-                "reference": "bff38f3c68c114c6807d00de8c0c3ff152fd40eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/tester/zipball/bff38f3c68c114c6807d00de8c0c3ff152fd40eb",
-                "reference": "bff38f3c68c114c6807d00de8c0c3ff152fd40eb",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "bin": [
-                "Tester/tester"
-            ],
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "Tester/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0",
-                "GPL-3.0"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "http://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "http://nette.org/contributors"
-                }
-            ],
-            "description": "An easy-to-use PHP Unit Testing framework.",
-            "homepage": "http://nette.org",
-            "keywords": [
-                "nette",
-                "testing",
-                "unit"
-            ],
-            "time": "2013-08-28 15:42:57"
-        }
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "jkuchar/multiplefileupload": 20,
         "nette/tester": 20
     },
     "platform": {

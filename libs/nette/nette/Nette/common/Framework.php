@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette;
@@ -19,17 +15,14 @@ use Nette;
  *
  * @author     David Grudl
  */
-final class Framework
+class Framework
 {
 
 	/** Nette Framework version identification */
 	const NAME = 'Nette Framework',
-		VERSION = '2.0.12',
-		VERSION_ID = 20012,
-		REVISION = '$WCREV$ released on $WCDATE$';
-
-	/** @var bool set to TRUE if your host has disabled function ini_set */
-	public static $iAmUsingBadHost = FALSE;
+		VERSION = '2.1.0',
+		VERSION_ID = 20100,
+		REVISION = 'released on 2013-12-31';
 
 
 	/**

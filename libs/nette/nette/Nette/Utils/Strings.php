@@ -2,17 +2,12 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Utils;
 
-use Nette,
-	Nette\Diagnostics\Debugger;
+use Nette;
 
 
 /**
@@ -52,15 +47,13 @@ class Strings
 	 */
 	public static function fixEncoding($s, $encoding = 'UTF-8')
 	{
-		// removes xD800-xDFFF, xFEFF, x110000 and higher
-		if (strcasecmp($encoding, 'UTF-8') === 0) {
-			$s = str_replace("\xEF\xBB\xBF", '', $s); // remove UTF-8 BOM
-		}
+		// removes xD800-xDFFF, x110000 and higher
 		if (PHP_VERSION_ID >= 50400) {
 			ini_set('mbstring.substitute_character', 'none');
 			return mb_convert_encoding($s, $encoding, $encoding);
+		} else {
+			return @iconv('UTF-16', 'UTF-8//IGNORE', iconv($encoding, 'UTF-16//IGNORE', $s)); // intentionally @
 		}
-		return @iconv('UTF-16', $encoding . '//IGNORE', iconv($encoding, 'UTF-16//IGNORE', $s)); // intentionally @
 	}
 
 
@@ -124,7 +117,10 @@ class Strings
 		if ($length === NULL) {
 			$length = self::length($s);
 		}
-		return function_exists('mb_substr') ? mb_substr($s, $start, $length, 'UTF-8') : iconv_substr($s, $start, $length, 'UTF-8'); // MB is much faster
+		if (function_exists('mb_substr')) {
+			return mb_substr($s, $start, $length, 'UTF-8'); // MB is much faster
+		}
+		return iconv_substr($s, $start, $length, 'UTF-8');
 	}
 
 
@@ -135,9 +131,7 @@ class Strings
 	 */
 	public static function normalize($s)
 	{
-		// standardize line endings to unix-like
-		$s = str_replace("\r\n", "\n", $s); // DOS
-		$s = strtr($s, "\r", "\n"); // Mac
+		$s = self::normalizeNewLines($s);
 
 		// remove control characters; leave \t + \n
 		$s = preg_replace('#[\x00-\x08\x0B-\x1F\x7F]+#', '', $s);
@@ -149,6 +143,17 @@ class Strings
 		$s = trim($s, "\n");
 
 		return $s;
+	}
+
+
+	/**
+	 * Standardize line endings to unix-like.
+	 * @param  string  UTF-8 encoding or 8-bit
+	 * @return string
+	 */
+	public static function normalizeNewLines($s)
+	{
+		return str_replace(array("\r\n", "\r"), "\n", $s);
 	}
 
 
@@ -229,7 +234,10 @@ class Strings
 	 */
 	public static function indent($s, $level = 1, $chars = "\t")
 	{
-		return $level < 1 ? $s : self::replace($s, '#(?:^|[\r\n]+)(?=[^\r\n])#', '$0' . str_repeat($chars, $level));
+		if ($level > 0) {
+			$s = self::replace($s, '#(?:^|[\r\n]+)(?=[^\r\n])#', '$0' . str_repeat($chars, $level));
+		}
+		return $s;
 	}
 
 
@@ -294,6 +302,32 @@ class Strings
 			$right = self::substring($right, 0, $len);
 		}
 		return self::lower($left) === self::lower($right);
+	}
+
+
+	/**
+	 * Finds the length of common prefix of strings.
+	 * @param  string|array
+	 * @param  string
+	 * @return string
+	 */
+	public static function findPrefix($strings, $second = NULL)
+	{
+		if (!is_array($strings)) {
+			$strings = func_get_args();
+		}
+		$first = array_shift($strings);
+		for ($i = 0; $i < strlen($first); $i++) {
+			foreach ($strings as $s) {
+				if (!isset($s[$i]) || $first[$i] !== $s[$i]) {
+					while ($i && $first[$i-1] >= "\x80" && $first[$i] >= "\x80" && $first[$i] < "\xC0") {
+						$i--;
+					}
+					return substr($first, 0, $i);
+				}
+			}
+		}
+		return $first;
 	}
 
 
@@ -461,7 +495,7 @@ class Strings
 			restore_error_handler();
 			throw new RegexpException("$message in pattern: $pattern");
 		});
-		$res = preg_match_all(
+		preg_match_all(
 			$pattern, $subject, $m,
 			($flags & PREG_PATTERN_ORDER) ? $flags : ($flags | PREG_SET_ORDER),
 			$offset
@@ -484,7 +518,7 @@ class Strings
 	 */
 	public static function replace($subject, $pattern, $replacement = NULL, $limit = -1)
 	{
-		if (is_object($replacement) || is_array($replacement)/*5.2* || preg_match('#^\x00lambda_\d+\z#', $replacement)*/) {
+		if (is_object($replacement) || is_array($replacement)) {
 			if ($replacement instanceof Nette\Callback) {
 				$replacement = $replacement->getNative();
 			}

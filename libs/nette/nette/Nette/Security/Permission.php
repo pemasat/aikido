@@ -2,11 +2,7 @@
 
 /**
  * This file is part of the Nette Framework (http://nette.org)
- *
  * Copyright (c) 2004 David Grudl (http://davidgrudl.com)
- *
- * For the full copyright and license information, please view
- * the file license.txt that was distributed with this source code.
  */
 
 namespace Nette\Security;
@@ -524,8 +520,6 @@ class Permission extends Nette\Object implements IAuthorizator
 			$privileges = array($privileges);
 		}
 
-		$assertion = $assertion ? new Nette\Callback($assertion) : NULL;
-
 		if ($toAdd) { // add to the rules
 			foreach ($resources as $resource) {
 				foreach ($roles as $role) {
@@ -571,7 +565,8 @@ class Permission extends Nette\Object implements IAuthorizator
 					} else {
 						foreach ($privileges as $privilege) {
 							if (isset($rules['byPrivilege'][$privilege]) &&
-								$type === $rules['byPrivilege'][$privilege]['type']) {
+								$type === $rules['byPrivilege'][$privilege]['type']
+							) {
 								unset($rules['byPrivilege'][$privilege]);
 							}
 						}
@@ -750,7 +745,7 @@ class Permission extends Nette\Object implements IAuthorizator
 			$rule = $rules['byPrivilege'][$privilege];
 		}
 
-		if ($rule['assert'] === NULL || $rule['assert']->__invoke($this, $role, $resource, $privilege)) {
+		if ($rule['assert'] === NULL || Nette\Utils\Callback::invoke($rule['assert'], $this, $role, $resource, $privilege)) {
 			return $rule['type'];
 
 		} elseif ($resource !== self::ALL || $role !== self::ALL || $privilege !== self::ALL) {
