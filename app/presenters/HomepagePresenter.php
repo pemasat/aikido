@@ -14,7 +14,7 @@ class HomepagePresenter extends BasePresenter {
 		$this->personsRepository = $this->context->personsRepository;
 	}
 	public function beforeRender(){
-		$this->template->news = $this->newsRepository->findAll();
+		$this->template->news = $this->newsRepository->findLast();
 	}
 
 	public function renderDefault() {

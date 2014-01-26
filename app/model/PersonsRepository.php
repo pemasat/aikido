@@ -36,7 +36,6 @@ class PersonsRepository extends Repository {
 	}
 	
 	public function getRandomPerson() {
-		\Nette\Diagnostics\FireLogger::log($this->connection->fetch('SELECT * FROM persons ORDER BY RANDOM() LIMIT 1;'));
 		return $this->connection->fetch('SELECT * FROM persons ORDER BY RANDOM() LIMIT 1;');
 	}
 
