@@ -61,47 +61,11 @@ class GalleriesPresenter extends BasePresenter {
 		));
 	}
 	
-		protected function createComponentGrid($name)
-		{
-			 $grid = new Grido\Grid($this, $name);
-			 $grid->setModel($this->context->database->table('user'));
-		}	
-/*	
-	public function renderDelete() {
-		 $this->newsRepository->delete($this->request->getParameters()['id']);
-		 $this->flashMessage('Novinka byla smazaná.');
-		 $this->redirect('News:');
+	protected function createComponentGrid($name)
+	{
+		 $grid = new Grido\Grid($this, $name);
+		 $grid->setModel($this->context->database->table('user'));
+	}	
 
-	}
-
-
-
-	protected function createComponentEditForm($name) {
-		 $form = new Form($this, $name);
-
-		 if ($this->request->getParameters()['id'] != 'null') {
-			  $id = $this->request->getParameters()['id'];
-		 } else if ($form->getHttpData()['id']  != 'null') {
-			  $id = $form->getHttpData()['id'];
-		 } else {
-			  throw new Nette\IOException('Nebylo nalezeno id pro novinku');
-		 }
-
-		 $item = $this->newsRepository->findFirstBy(array('id' => $id));
-		 $form->addHidden('id', $id);
-		 $form->addText('title', 'Nadpis')
-					->setDefaultValue($item->title);
-		 $form->addTextArea('content', 'Obsah')
-					->setDefaultValue($item->content);
-		 $form->addSubmit('send', 'Aktualizovat');
-		 $form->onSuccess[] = $this->editFormSubmitted;
-		 return $form;
-	}
-	public function editFormSubmitted(Form $form) {
-		 $this->newsRepository->edit($form->values->id, $form->values->title, $form->values->content);
-		 $this->flashMessage('Novinka byla aktualizovaná');
-		 $this->redirect('News:');
-	}
-*/
-
+		
 }

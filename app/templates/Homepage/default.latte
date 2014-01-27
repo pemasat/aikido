@@ -21,8 +21,9 @@
 		<div class="item">
 			<h3>Náhodná fotogalerie</h3>
 			<p>
-				{$randomPerson->title}<br />
-				<a n:href="Gallery:">Všechny fotogalerie</a>
+				{$randomGallery->title}<br />
+				<a n:href="Galleries:detail id=>$randomGallery->id">Detail</a>
+				<a n:href="Galleries:">Všechny fotogalerie</a>
 			</p>
 		</div>
 	</div>

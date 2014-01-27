@@ -1,0 +1,14 @@
+{block content}
+	<h1 n:block=title>Fotogalerie</h1>
+	<ul>
+		<li n:foreach="$galleries as $item">
+			<a n:href="Galleries:detail id=>$item->id">{$item->title}</a>
+			<a n:href="Galleries:edit id=>$item->id">Editovat</a>
+			<a n:href="Galleries:delete id=>$item->id" alert="Opravdu chcete smazat?">Smazat</a>
+		</li>
+	</ul>
+	<p><a n:href="Galleries:create">Založit novou</a></p>
+
+
+
+{/block}

@@ -80,5 +80,14 @@ class GalleriesRepository extends Repository {
 	private function copyPhotos($id, $photos) {
 
 	}
+	
+	
+	public function getRandomPerson() {
+		return $this->connection->fetch('SELECT * FROM persons ORDER BY RANDOM() LIMIT 1;');
+	}
+	public function getRandomGallery() {
+		return $this->connection->fetch('SELECT * FROM galleries ORDER BY RANDOM() LIMIT 1;');
+	}
+
 
 }
