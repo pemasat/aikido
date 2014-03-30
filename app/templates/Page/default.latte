@@ -1,0 +1,43 @@
+{block content}
+	<h1 n:block=title>Stránka</h1>
+	
+	<h2>Promo</h2>
+	<div id="promo">
+		<div class="item">
+			<h3>Nábor nových členů</h3>
+			<p>Infotext
+			
+		</div>
+		
+		<div class="item">
+			<h3>Naši členi</h3>
+			<p>
+				{$randomPerson->title}<br />
+				{$randomPerson->perex}
+				<a n:href="Persons:">Více o našich členech</a>
+			</p>
+		</div>
+				
+		<div class="item">
+			<h3>Náhodná fotogalerie</h3>
+			<p>
+				{$randomGallery->title}<br />
+				<a n:href="Galleries:detail id=>$randomGallery->id">Detail</a>
+				<a n:href="Galleries:">Všechny fotogalerie</a>
+			</p>
+		</div>
+	</div>
+	
+	
+	<h2>Poslední novinky</h2>
+	<ul>
+		<li n:foreach="$news as $new">
+			<strong>{$new->title}:</strong>
+			{$new->content|truncate:160}
+		</li>
+		<li><a n:href="News:">Všechny novinky</a></li>
+	</ul>
+
+
+
+{/block}

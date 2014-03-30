@@ -26,14 +26,18 @@ common:
 
 
 	services:
+
+		database: @nette.database.default
+		
 		authenticator: Authenticator
 		routerFactory: RouterFactory
-		router: @routerFactory::createRouter
+		router: @routerFactory::createRouter(@database)
 		
 		newsRepository: Aiki\NewsRepository
 		contactModel: Aiki\ContactModel
 		galleriesRepository: Aiki\GalleriesRepository
 		personsRepository: Aiki\PersonsRepository
+		frontpageRepository: Aiki\FrontpageRepository(@database)
 
 
 

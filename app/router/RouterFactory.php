@@ -8,25 +8,26 @@ use Nette\Application\Routers\RouteList,
 /**
  * Router factory.
  */
-class RouterFactory
-{
-
+class RouterFactory {
+	
 	/**
 	 * @return Nette\Application\IRouter
 	 */
-	public function createRouter()
-	{
+	public function createRouter(Nette\Database\Connection $dbConnection) {
 		$router = new RouteList();
-
-                $router[] = new Route('<presenter>/<id>/<action>', array(
-                    'action' => 'default',
-                    'id' => 'null',
-                    'presenter' => 'null',
-                ));
+		
+		$router[] = new Aiki\FrontpageRouter($dbConnection);
+		
+		$router[] = new Route('<presenter>/<id>/<action>', array(
+			 'action' => 'default',
+			 'id' => 'null',
+			 'presenter' => 'null',
+		));
                 
 		$router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
                 
-                $router[] = new Route('/', 'Homepage:default');
+		$router[] = new Route('/', 'Homepage:default');
+		
 		return $router;
 	}
 
