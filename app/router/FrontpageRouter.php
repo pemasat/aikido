@@ -10,27 +10,11 @@ class FrontpageRouter extends Nette\Object implements Nette\Application\IRouter 
 	/** @var Nette\Database\Connection */
 	private $connection;
 	
-	/** @var array (slugs.type => presenter name) */
-	private $presenters = array(
-		'user' => 'Users',
-		'group' => 'Groups',
-		'event' => 'Events',
-	);
-
-	
-	
 	/**
 	 * @param Nette\Database\Connection $connection
 	 */
 	public function __construct(Nette\Database\Connection $connection) {
 		$this->connection = $connection;
-		// $this->fronpageRepository = $this->context->fronpageRepository;
-		
-		/*
-		\Nette\Diagnostics\FireLogger::log('XXXX');
-		\Nette\Diagnostics\FireLogger::log($dbConnection->fetchAll('select * from galleries_items'));
-		\Nette\Diagnostics\FireLogger::log($dbConnection);
-		 */
 	}
 	
 	/**

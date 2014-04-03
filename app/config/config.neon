@@ -39,6 +39,8 @@ common:
 		personsRepository: Aiki\PersonsRepository
 		frontpageRepository: Aiki\FrontpageRepository(@database)
 
+		stringAttribute: Aiki\StringAttribute
+
 
 
 	factories:
