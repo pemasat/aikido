@@ -28,7 +28,7 @@ class PagePresenter extends BasePresenter {
 		$this->template->randomPerson = $this->personsRepository->getRandomPerson();
 		$this->template->randomGallery = $this->galleriesRepository->getRandomGallery();
 		
-		$this->template->title = $this->stringAttribute->getValue('test.html/title');
+		$this->template->title = 'aaa';
 
 	}
 	/**

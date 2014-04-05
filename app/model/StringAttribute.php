@@ -15,14 +15,14 @@ class StringAttribute extends Nette\Object {
         $this->connection = $db;
     }
 	 
-	 public function getValue($key) {
-		 return $this->connection->query('SELECT value FROM attribute_string WHERE key = ?', $key)->fetchField();
+	 public function getValue($uri, $key) {
+		 return $this->connection->query('SELECT value FROM attribute_string WHERE key = ?', $uri . '::' . $key)->fetchField();
 	 }
 
-	 public function setValue($key, $value) {
-		 return $this->connection->query('UPDATE attribute_string SET ? WHERE id=?', array(
+	 public function setValue($uri, $key, $value) {
+		 return $this->connection->query('UPDATE attribute_string SET ? WHERE key=?', array(
 			  'value' => $value
-		 ), $key);
+		 ), $uri . '::' . $key);
 	 }
 
 }
