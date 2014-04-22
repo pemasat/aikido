@@ -31,9 +31,8 @@ class StringControl extends UI\Control {
 	}
 	
 	public function handleEdit($param) {
-		$this->stringAttribute = $this->presenter->context->stringAttribute;		
-		Nette\Diagnostics\FireLogger::log($this->params['uri']. '::' . $this->params['key']);
-		Nette\Diagnostics\FireLogger::log($this->stringAttribute->getValue($param['uri'], $param['key']));
+		// @todo napojit se na stringAtribute ne skrze presenter
+		$this->stringAttribute = $this->presenter->context->stringAttribute;
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/StringControlEdit.latte');
 		$template->content = $this->stringAttribute->getValue($this->params['uri'], $this->params['key']);
@@ -41,26 +40,36 @@ class StringControl extends UI\Control {
 	}
 
 	protected function createComponentEditForm($name) {
-		 $form = new Form($this, $name);
-		 $form->addText('value', 'Hodnota');
-		 $form->addSubmit('send', 'Uložit');
-		 $form->onSuccess[] = $this->editFormSubmitted;
-		 return $form;
+		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		
+		$form = new Form($this, $name);
+		
+		// @todo Předělat na něco stabilnějšího
+		$uri = isset($this->params['uri']) ? $this->params['uri'] : $form->httpData['uri'];
+		$key = isset($this->params['key']) ? $this->params['key'] : $form->httpData['key'];
+		
+		$form->addText('value', 'Hodnota')
+					->setDefaultValue($this->stringAttribute->getValue($uri, $key));
+		$form->addHidden('uri', $uri);
+		$form->addHidden('key', $key);
+		$form->addSubmit('send', 'Uložit');
+		$form->onSuccess[] = $this->editFormSubmitted;
+		return $form;
 	}
 	public function editFormSubmitted(Form $form) {
-		/*
-		$this->stringAttribute->setValue(
-			$form->values->
-		);
-		$this->personsRepository->create(
-			$form->values->title,
-			$form->values->level,
-			$form->values->perex,
-			$form->values->content
-		);
-		$this->flashMessage('Uživatel byl založen');
-		$this->redirect('Persons:');
-	 */
+		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		if (
+			$this->stringAttribute->setValue(
+				$form->values->uri,
+				$form->values->key,
+				$form->values->value
+			)
+		) {
+			$this->flashMessage('Hodnota byla nastavena');
+		} else {
+			$this->flashMessage('Ups, něco nevyšlo');
+		}
+		$this->presenter->redirectUrl('/' . $form->values->uri);
 	}
 
 
