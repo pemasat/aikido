@@ -1,4 +1,10 @@
 {block content}
 
+{foreach $flashes as $flash}
+    <div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+
 {$content}
+
+AAA: {$mode} :AAA
 <a n:href="edit! uri=>$uri, key=>$key">edit</a>

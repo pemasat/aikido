@@ -1,20 +1,24 @@
 <?php
 
-use Nette\Application\UI;
+use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
 
 
 /**
  * The attribute String control
  */
-class StringControl extends UI\Control {
+class StringControl extends Control {
 	/** @persistent page */
 	public $round = '';
 	private $stringAttribute;
+   
+   /** @persistent */
+   public $mode = 'normal';
 
 
-	public function __construct() {
+   public function __construct() {
 		parent::__construct();
+      
 	}
 
 
@@ -24,6 +28,7 @@ class StringControl extends UI\Control {
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/StringControl.latte');
 		$template->content = $this->stringAttribute->getValue($params['uri'], $params['key']);
+      $template->mode = $this->mode;
 		$template->uri = $params['uri'];
 		$template->key = $params['key'];
 		$template->render();
@@ -32,11 +37,15 @@ class StringControl extends UI\Control {
 	
 	public function handleEdit($param) {
 		// @todo napojit se na stringAtribute ne skrze presenter
-		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		/*
+      $this->stringAttribute = $this->presenter->context->stringAttribute;
 		$template = $this->template;
 		$template->setFile(__DIR__ . '/StringControlEdit.latte');
 		$template->content = $this->stringAttribute->getValue($this->params['uri'], $this->params['key']);
 		$template->render();
+      
+       */
+      $this->mode = 'edit';
 	}
 
 	protected function createComponentEditForm($name) {
