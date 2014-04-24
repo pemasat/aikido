@@ -55,6 +55,11 @@ class FrontpageRouter extends Nette\Object implements Nette\Application\IRouter 
 		
 		$params = $appRequest->getParameters();
 		$slug = isset($params['slug']) ? $params['slug'] : NULL;
+		
+		// @todo Tohle je veliká prasárna, kvůli url z komponent, zkusit vymyslet něco elegantnějšího
+		if (isset($params['string-slug'])) {
+			$slug = $params['string-slug'];
+		}
 		$action = isset($params['action']) ? $params['action'] : NULL;
 		if ($action !== 'default' || !is_string($slug)) return NULL;
 		unset($params['action'], $params['slug']); // we don't want to have 'action' and 'slug' in query parameters

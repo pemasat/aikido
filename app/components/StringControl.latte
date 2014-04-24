@@ -4,7 +4,4 @@
     <div class="flash {$flash->type}">{$flash->message}</div>
 {/foreach}
 
-{$content}
-
-AAA: {$mode} :AAA
-<a n:href="edit! uri=>$uri, key=>$key">edit</a>
+{$content} <a n:href="edit! slug=>$slug, key=>$key">edit</a>

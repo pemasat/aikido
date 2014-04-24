@@ -12,9 +12,14 @@ abstract class BasePresenter extends Nette\Application\UI\Presenter
 			 $form[$name] = new \Nette\Forms\Controls\MultiUploadControl($label);
 			 return $form[$name];
 		});
-		// @todo: tady to chytat případně i z params['uri']
-		// \Nette\Diagnostics\FireLogger::log($this->context);
-		$this->template->uri = isset($this->request->parameters['slug']) ? $this->request->parameters['slug'] : '';
+		// @todo: vymyslet jak se nechytat skrze to string-slug
+		if (isset($this->request->parameters['slug'])) {
+			$this->template->slug = $this->request->parameters['slug'];
+		} else if (isset ($this->request->parameters['string-slug'])) {
+			$this->template->slug = $this->request->parameters['string-slug'];
+		} else {
+			$this->template->slug = '';
+		}
 	}
 	
 

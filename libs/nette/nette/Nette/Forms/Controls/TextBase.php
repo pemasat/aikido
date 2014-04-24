@@ -42,7 +42,7 @@ abstract class TextBase extends BaseControl
 		if ($value === NULL) {
 			$value = '';
 		} elseif (!is_scalar($value) && !method_exists($value, '__toString')) {
-			throw new Nette\InvalidArgumentException('Value must be scalar or NULL, ' . gettype($value) . ' given.');
+			throw new Nette\InvalidArgumentException('Value must be scalar or NULL, ' . gettype($value) . " given in field '{$this->name}'.");
 		}
 		$this->rawValue = $this->value = $value;
 		return $this;
@@ -117,7 +117,9 @@ abstract class TextBase extends BaseControl
 	{
 		if ($operation === Form::LENGTH || $operation === Form::MAX_LENGTH) {
 			$tmp = is_array($arg) ? $arg[1] : $arg;
-			$this->control->maxlength = is_scalar($tmp) ? $tmp : NULL;
+			if (is_scalar($tmp)) {
+				$this->control->maxlength = isset($this->control->maxlength) ? min($this->control->maxlength, $tmp) : $tmp;
+			}
 		}
 		return parent::addRule($operation, $message, $arg);
 	}

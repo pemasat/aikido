@@ -1,8 +1,7 @@
 {block content}
-	<h1 n:block=title>{$title}</h1>
+	<h1 n:block=title>{control string slug=>$slug, key=>'title'}</h1>
 	
 	
-	{control string uri=>$uri, key=>'title'}
 	
 	<h2>Promo</h2>
 	<div id="promo">

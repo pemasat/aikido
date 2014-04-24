@@ -27,7 +27,7 @@
 			}
 
 			// enables <a class="nette-toggle" href="#"> or <span data-ref="#"> toggling
-			for (link = e.target; link && (!link.tagName || link.className.indexOf('nette-toggle') < 0); link = link.parentNode) {}
+			for (link = e.target; link && (!link.tagName || typeof link.className !== 'string' || !link.className.match(/\bnette-toggle(-collapsed)?\b/)); link = link.parentNode) {}
 			if (!link) {
 				return;
 			}
@@ -38,7 +38,7 @@
 				oldPosition = panel.position();
 
 			link.className = 'nette-toggle' + (collapsed ? '' : '-collapsed');
-			dest[collapsed ? 'show' : 'hide']();
+			dest[collapsed ? 'removeClass' : 'addClass']('nette-collapsed');
 			e.preventDefault();
 
 			if (panel.length) {

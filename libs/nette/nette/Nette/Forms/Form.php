@@ -74,6 +74,7 @@ class Form extends Container
 	const DATA_TEXT = 1;
 	const DATA_LINE = 2;
 	const DATA_FILE = 3;
+	const DATA_KEYS = 8;
 
 	/** @internal tracker ID */
 	const TRACKER_ID = '_form_';
@@ -529,7 +530,7 @@ class Form extends Container
 	public function getAllErrors()
 	{
 		trigger_error(__METHOD__ . '() is deprecated; use getErrors() instead.', E_USER_DEPRECATED);
-		return $this->errors();
+		return $this->getErrors();
 	}
 
 
@@ -625,9 +626,7 @@ class Form extends Container
 	{
 		$toggles = array();
 		foreach ($this->getControls() as $control) {
-			foreach ($control->getRules()->getToggles(TRUE) as $id => $hide) {
-				$toggles[$id] = empty($toggles[$id]) ? $hide : TRUE;
-			}
+			$toggles = $control->getRules()->getToggleStates($toggles);
 		}
 		return $toggles;
 	}

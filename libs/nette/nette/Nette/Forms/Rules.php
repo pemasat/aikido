@@ -38,6 +38,7 @@ class Rules extends Nette\Object implements \IteratorAggregate
 		Form::MAX_FILE_SIZE => 'The size of the uploaded file can be up to %d bytes.',
 		Form::MAX_POST_SIZE => 'The uploaded data exceeds the limit of %d bytes.',
 		Form::IMAGE => 'The uploaded file must be image in format JPEG, GIF or PNG.',
+		Form::MIME_TYPE => 'The uploaded file is not in the expected format.',
 		Nette\Forms\Controls\SelectBox::VALID => 'Please select a valid option.',
 	);
 
@@ -175,7 +176,7 @@ class Rules extends Nette\Object implements \IteratorAggregate
 
 
 	/**
-	 * Toggles HTML elememnt visibility.
+	 * Toggles HTML element visibility.
 	 * @param  string     element id
 	 * @param  bool       hide element?
 	 * @return self
@@ -184,6 +185,35 @@ class Rules extends Nette\Object implements \IteratorAggregate
 	{
 		$this->toggles[$id] = $hide;
 		return $this;
+	}
+
+
+	/**
+	 * @param  bool
+	 * @return array
+	 */
+	public function getToggles($actual = FALSE)
+	{
+		return $actual ? $this->getToggleStates() : $this->toggles;
+	}
+
+
+	/**
+	 * @internal
+	 * @return array
+	 */
+	public function getToggleStates($toggles = array(), $success = TRUE)
+	{
+		foreach ($this->toggles as $id => $hide) {
+			$toggles[$id] = ($success xor !$hide) || !empty($toggles[$id]);
+		}
+
+		foreach ($this as $rule) {
+			if ($rule->type === Rule::CONDITION) {
+				$toggles = $rule->subRules->getToggleStates($toggles, $success && static::validateRule($rule));
+			}
+		}
+		return $toggles;
 	}
 
 
@@ -234,25 +264,6 @@ class Rules extends Nette\Object implements \IteratorAggregate
 			array_unshift($rules, $this->required);
 		}
 		return new \ArrayIterator($rules);
-	}
-
-
-	/**
-	 * @param  bool
-	 * @return array
-	 */
-	public function getToggles($actual = FALSE)
-	{
-		$toggles = $this->toggles;
-		foreach ($actual ? $this : array() as $rule) {
-			if ($rule->type === Rule::CONDITION) {
-				$success = static::validateRule($rule);
-				foreach ($rule->subRules->getToggles(TRUE) as $id => $hide) {
-					$toggles[$id] = empty($toggles[$id]) ? ($success && $hide) : TRUE;
-				}
-			}
-		}
-		return $toggles;
 	}
 
 

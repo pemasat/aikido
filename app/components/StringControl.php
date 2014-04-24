@@ -14,8 +14,13 @@ class StringControl extends Control {
    
    /** @persistent */
    public $mode = 'normal';
-
-
+	
+   /** @persistent */
+   public $slug;
+	
+   /** @persistent */
+   public $key;
+	
    public function __construct() {
 		parent::__construct();
       
@@ -24,27 +29,24 @@ class StringControl extends Control {
 
 	public function render($params) {
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		$this->slug = $params['slug'];
+		$this->key = $params['key'];
 		
 		$template = $this->template;
-		$template->setFile(__DIR__ . '/StringControl.latte');
-		$template->content = $this->stringAttribute->getValue($params['uri'], $params['key']);
+		if ($this->mode == 'edit') {
+			$template->setFile(__DIR__ . '/StringControlEdit.latte');
+		} else {
+			$template->setFile(__DIR__ . '/StringControl.latte');
+		}
+		$template->content = $this->stringAttribute->getValue($params['slug'], $params['key']);
       $template->mode = $this->mode;
-		$template->uri = $params['uri'];
+		$template->slug = $params['slug'];
 		$template->key = $params['key'];
 		$template->render();
 		
 	}
 	
 	public function handleEdit($param) {
-		// @todo napojit se na stringAtribute ne skrze presenter
-		/*
-      $this->stringAttribute = $this->presenter->context->stringAttribute;
-		$template = $this->template;
-		$template->setFile(__DIR__ . '/StringControlEdit.latte');
-		$template->content = $this->stringAttribute->getValue($this->params['uri'], $this->params['key']);
-		$template->render();
-      
-       */
       $this->mode = 'edit';
 	}
 
@@ -53,14 +55,11 @@ class StringControl extends Control {
 		
 		$form = new Form($this, $name);
 		
-		// @todo Předělat na něco stabilnějšího
-		$uri = isset($this->params['uri']) ? $this->params['uri'] : $form->httpData['uri'];
-		$key = isset($this->params['key']) ? $this->params['key'] : $form->httpData['key'];
-		
 		$form->addText('value', 'Hodnota')
-					->setDefaultValue($this->stringAttribute->getValue($uri, $key));
-		$form->addHidden('uri', $uri);
-		$form->addHidden('key', $key);
+					->setDefaultValue($this->stringAttribute->getValue($this->params['slug'], $this->params['key']));
+		$form->addHidden('slug', $this->params['slug']);
+		$form->addHidden('aaaa', 'AAAAAA');
+		$form->addHidden('key', $this->params['key']);
 		$form->addSubmit('send', 'Uložit');
 		$form->onSuccess[] = $this->editFormSubmitted;
 		return $form;
@@ -69,7 +68,7 @@ class StringControl extends Control {
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
 		if (
 			$this->stringAttribute->setValue(
-				$form->values->uri,
+				$form->values->slug,
 				$form->values->key,
 				$form->values->value
 			)
@@ -78,7 +77,7 @@ class StringControl extends Control {
 		} else {
 			$this->flashMessage('Ups, něco nevyšlo');
 		}
-		$this->presenter->redirectUrl('/' . $form->values->uri);
+		$this->presenter->redirectUrl('/' . $form->values->slug);
 	}
 
 
