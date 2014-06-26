@@ -11,5 +11,4 @@ define('GALLERIES_DIR', WWW_DIR . '/galleries');
 define('GALLERIES_TEMP_DIR', WWW_DIR . '/../temp/galleries');
 
 
-// Run application.
-$container->application->run();
+$container->getService('application')->run();
