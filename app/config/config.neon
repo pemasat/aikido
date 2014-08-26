@@ -4,48 +4,42 @@
 # If you don't protect this directory from direct web access, anybody will be able to see your passwords.
 # http://nette.org/security-warning
 #
-common:
-	parameters:
-		database:
-			driver: sqlite
-			host: %appDir%/../db/share.db
+parameters:
+	database:
+		driver: sqlite
+		host: %appDir%/../db/share.db
 
-	php:
-		date.timezone: Europe/Prague
-		# zlib.output_compression: yes
+php:
+	date.timezone: Europe/Prague
+	# zlib.output_compression: yes
 
-	nette:
-		application:
-			errorPresenter: Error
+nette:
+	application:
+		errorPresenter: Error
 
-		database:
-			dsn: '%database.driver%:%database.host%'
+	database:
+		dsn: '%database.driver%:%database.host%'
 
-		session:
-			expiration: 14 days
-
-
-	services:
-
-		database: @nette.database.default
-		
-		authenticator: Authenticator
-		routerFactory: RouterFactory
-		router: @routerFactory::createRouter(@database)
-		
-		newsRepository: Aiki\NewsRepository
-		contactModel: Aiki\ContactModel
-		galleriesRepository: Aiki\GalleriesRepository
-		personsRepository: Aiki\PersonsRepository
-		frontpageRepository: Aiki\FrontpageRepository(@database)
-
-		stringAttribute: Aiki\StringAttribute
+	session:
+		expiration: 14 days
 
 
+services:
 
-	factories:
+	database: @nette.database.default
+
+	authenticator: Authenticator
+	routerFactory: RouterFactory
+	router: @routerFactory::createRouter(@database)
+
+	newsModel: Aiki\NewsRepository
+	contactModel: Aiki\ContactModel
+	galleriesModel: Aiki\GalleriesRepository
+	personsModel: Aiki\PersonsRepository
+	frontpageModel: Aiki\FrontpageRepository(@database)
+
+	stringAttribute: Aiki\StringAttribute
 
 
-production < common:
 
-development < common:
+factories:

@@ -9,14 +9,14 @@ use Nette\Application\UI\Form;
  * Homepage presenter.
  */
 class NewsPresenter extends BasePresenter {
-	private $newsRepository;
+	private $newsModel;
 	
 	protected function startup() {
 		parent::startup();
-		$this->newsRepository = $this->context->newsRepository;
+		$this->newsModel = $this->context->getService('newsModel');;
 	}
 	public function beforeRender(){
-            $this->template->news = $this->newsRepository->findAll();
+            $this->template->news = $this->newsModel->findAll();
 	}
 
 	public function renderDefault() {
@@ -24,7 +24,7 @@ class NewsPresenter extends BasePresenter {
 	}
         
         public function renderDelete() {
-            $this->newsRepository->delete($this->request->getParameters()['id']);
+            $this->newsModel->delete($this->request->getParameters()['id']);
             $this->flashMessage('Novinka byla smazaná.');
             $this->redirect('News:');
             
@@ -40,7 +40,7 @@ class NewsPresenter extends BasePresenter {
             return $form;
         }
         public function createFormSubmitted(Form $form) {
-            $this->newsRepository->create($form->values->title, $form->values->content);
+            $this->newsModel->create($form->values->title, $form->values->content);
             $this->flashMessage('Novinka založena');
             $this->redirect('News:');
         }
@@ -56,7 +56,7 @@ class NewsPresenter extends BasePresenter {
                 throw new Nette\IOException('Nebylo nalezeno id pro novinku');
             }
             
-            $item = $this->newsRepository->findFirstBy(array('id' => $id));
+            $item = $this->newsModel->findFirstBy(array('id' => $id));
             $form->addHidden('id', $id);
             $form->addText('title', 'Nadpis')
                     ->setDefaultValue($item->title);
@@ -67,7 +67,7 @@ class NewsPresenter extends BasePresenter {
             return $form;
         }
         public function editFormSubmitted(Form $form) {
-            $this->newsRepository->edit($form->values->id, $form->values->title, $form->values->content);
+            $this->newsModel->edit($form->values->id, $form->values->title, $form->values->content);
             $this->flashMessage('Novinka byla aktualizovaná');
             $this->redirect('News:');
         }

@@ -9,14 +9,14 @@ use Nette\Application\UI\Form;
  * Galleries presenter.
  */
 class GalleriesPresenter extends BasePresenter {
-	private $galleriesRepository;
+	private $galleriesModel;
 	
 	protected function startup() {
 		parent::startup();
-		$this->galleriesRepository = $this->context->galleriesRepository;
+		$this->galleriesModel = $this->context->getService('galleriesModel');
 	}
 	public function beforeRender(){
-		$this->template->galleries = $this->galleriesRepository->findAll();
+		$this->template->galleries = $this->galleriesModel->findAll();
 	}
 
 	public function renderDefault() {
@@ -24,8 +24,8 @@ class GalleriesPresenter extends BasePresenter {
 	}
 	
 	public function renderDetail() {
-		$this->template->gallery = $this->galleriesRepository->getGallery($this->params['id']);
-		$this->template->photos = $this->galleriesRepository->getPhotos($this->params['id']);
+		$this->template->gallery = $this->galleriesModel->getGallery($this->params['id']);
+		$this->template->photos = $this->galleriesModel->getPhotos($this->params['id']);
 		
 	}
 
@@ -38,7 +38,7 @@ class GalleriesPresenter extends BasePresenter {
 		 return $form;
 	}
 	public function createFormSubmitted(Form $form) {
-		 $idOfNewGallery = $this->galleriesRepository->create($form->values->title, $form->values->date);
+		 $idOfNewGallery = $this->galleriesModel->create($form->values->title, $form->values->date);
 		 $this->flashMessage('Fotogalerie založena, nyní do ní prosím naplňte nějaké fotky');
 		 $this->redirect('Galleries:upload', array(
 			  'id' => $idOfNewGallery
@@ -54,7 +54,7 @@ class GalleriesPresenter extends BasePresenter {
 		return $form;
 	}
 	public function uploadFormSubmitted(Form $form) {
-		$this->galleriesRepository->addPhotos($form->values->id, $form->values->photos);
+		$this->galleriesModel->addPhotos($form->values->id, $form->values->photos);
 		$this->flashMessage('Fotky byli úspěšně nahrány');
 		$this->redirect('Galleries:detail', array(
 			 'id' => $form->values->id

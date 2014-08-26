@@ -4,24 +4,24 @@
  * Homepage presenter.
  */
 class HomepagePresenter extends BasePresenter {
-	private $newsRepository;
-	private $personsRepository;
-	private $galleriesRepository;
+	private $newsModel;
+	private $personsModel;
+	private $galleriesModel;
 	
 	
 	protected function startup() {
 		parent::startup();
-		$this->newsRepository = $this->context->newsRepository;
-		$this->personsRepository = $this->context->personsRepository;
-		$this->galleriesRepository = $this->context->galleriesRepository;
+		$this->newsModel = $this->context->getService('newsModel');
+		$this->personsModel = $this->context->getService('personsModel');
+		$this->galleriesModel = $this->context->getService('galleriesModel');
 	}
 	public function beforeRender(){
-		$this->template->news = $this->newsRepository->findLast();
+		$this->template->news = $this->newsModel->findLast();
 	}
 
 	public function renderDefault() {
-		$this->template->randomPerson = $this->personsRepository->getRandomPerson();
-		$this->template->randomGallery = $this->galleriesRepository->getRandomGallery();
+		$this->template->randomPerson = $this->personsModel->getRandomPerson();
+		$this->template->randomGallery = $this->galleriesModel->getRandomGallery();
 
 	}
 

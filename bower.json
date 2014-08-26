@@ -1,0 +1,11 @@
+{
+	"name": "Aiki",
+	"version": "0.0.0",
+	"appPath": "www",
+	"dependencies": {
+		"jquery": "~1.11.1",
+		"nette.ajax.js": "latest"
+},
+	"devDependencies": {
+	}
+}

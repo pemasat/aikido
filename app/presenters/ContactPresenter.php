@@ -11,7 +11,7 @@ class ContactPresenter extends BasePresenter {
 
 	protected function startup() {
 		parent::startup();
-		$this->contactModel = $this->context->contactModel;
+		$this->contactModel = $this->context->getService('contactModel');
 	}
 	public function beforeRender(){
 	}

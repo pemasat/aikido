@@ -9,14 +9,14 @@ use Nette\Application\UI\Form;
  * Persons presenter.
  */
 class PersonsPresenter extends BasePresenter {
-	private $personsRepository;
+	private $personsModel;
 	
 	protected function startup() {
 		parent::startup();
-		$this->personsRepository = $this->context->personsRepository;
+		$this->personsModel = $this->context->getService('personsModel');;
 	}
 	public function beforeRender(){
-            $this->template->persons = $this->personsRepository->findAll();
+            $this->template->persons = $this->personsModel->findAll();
 	}
 
 	public function renderDefault() {
@@ -24,7 +24,7 @@ class PersonsPresenter extends BasePresenter {
 	}
         
         public function renderDelete() {
-            $this->personsRepository->delete($this->request->getParameters()['id']);
+            $this->personsModel->delete($this->request->getParameters()['id']);
             $this->flashMessage('Člen byl smazán.');
             $this->redirect('Persons:');
             
@@ -42,7 +42,7 @@ class PersonsPresenter extends BasePresenter {
             return $form;
         }
         public function createFormSubmitted(Form $form) {
-            $this->personsRepository->create(
+            $this->personsModel->create(
 					$form->values->title,
 					$form->values->level,
 					$form->values->perex,
@@ -63,7 +63,7 @@ class PersonsPresenter extends BasePresenter {
                 throw new Nette\IOException('Nebylo nalezeno id pro uživetele');
             }
             
-            $item = $this->personsRepository->findFirstBy(array('id' => $id));
+            $item = $this->personsModel->findFirstBy(array('id' => $id));
             $form->addHidden('id', $id);
             $form->addText('title', 'Oslovení')
                     ->setDefaultValue($item->title);
@@ -78,7 +78,7 @@ class PersonsPresenter extends BasePresenter {
             return $form;
         }
         public function editFormSubmitted(Form $form) {
-            $this->personsRepository->edit(
+            $this->personsModel->edit(
 					$form->values->id,
 					$form->values->title,
 					$form->values->level,
