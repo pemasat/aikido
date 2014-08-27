@@ -66,12 +66,9 @@ class StringControl extends Control {
 		$form->onSuccess[] = $this->editFormSubmitted;
 		return $form;
 	}
+	
 	public function editFormSubmitted(Form $form, $values) {
-		Debugger::fireLog('xxx');
-		Debugger::fireLog($form);
-		Debugger::fireLog($values);
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
-		Tracy\FireLogger::log($this->stringAttribute);
 		if (
 			$this->stringAttribute->setValue(
 				$form->values->slug,
@@ -83,7 +80,6 @@ class StringControl extends Control {
 		} else {
 			$this->flashMessage('Ups, něco nevyšlo');
 		}
-		Debugger::fireLog('Hello World');
 		$this->presenter->redirectUrl('/' . $form->values->slug);
 	}
 
