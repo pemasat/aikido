@@ -9,6 +9,7 @@ class PagePresenter extends BasePresenter {
 	private $galleriesModel;
 	
 	private $stringAttribute;
+	private $textAttribute;
 
 
 
@@ -19,6 +20,7 @@ class PagePresenter extends BasePresenter {
 		$this->personsModel = $this->context->getService('personsModel');
 		$this->galleriesModel = $this->context->getService('galleriesModel');
 		$this->stringAttribute = $this->context->stringAttribute;
+		$this->textAttribute = $this->context->textAttribute;
 	}
 	public function beforeRender(){
 		$this->template->news = $this->newsModel->findLast();
@@ -37,9 +39,18 @@ class PagePresenter extends BasePresenter {
 	*/
 	protected function createComponentString() {
 		$string = new StringControl;
-		// $fifteen->onGameOver[] = $this->gameOver;
 		$string->redrawControl();
 		return $string;
+	}
+
+	/**
+	* Text control factory.
+	* @return TextControl
+	*/
+	protected function createComponentText() {
+		$text = new TextControl;
+		$text->redrawControl();
+		return $text;
 	}
 
 

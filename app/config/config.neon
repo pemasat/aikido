@@ -39,6 +39,7 @@ services:
 	frontpageModel: Aiki\FrontpageRepository(@database)
 
 	stringAttribute: Aiki\StringAttribute
+	textAttribute: Aiki\TextAttribute
 
 
 
