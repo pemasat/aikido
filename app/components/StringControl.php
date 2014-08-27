@@ -2,6 +2,7 @@
 
 use Nette\Application\UI\Control;
 use Nette\Application\UI\Form;
+use Tracy\Debugger;
 
 
 /**
@@ -51,21 +52,26 @@ class StringControl extends Control {
 	}
 
 	protected function createComponentEditForm($name) {
+		Debugger::fireLog($this->params);
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
 		
 		$form = new Form($this, $name);
 		
 		$form->addText('value', 'Hodnota')
 					->setDefaultValue($this->stringAttribute->getValue($this->params['slug'], $this->params['key']));
-		$form->addHidden('slug', $this->params['slug']);
-		$form->addHidden('aaaa', 'AAAAAA');
+		$form->addHidden('slug')
+				  ->setDefaultValue($this->params['slug']);
 		$form->addHidden('key', $this->params['key']);
 		$form->addSubmit('send', 'Uložit');
 		$form->onSuccess[] = $this->editFormSubmitted;
 		return $form;
 	}
-	public function editFormSubmitted(Form $form) {
+	public function editFormSubmitted(Form $form, $values) {
+		Debugger::fireLog('xxx');
+		Debugger::fireLog($form);
+		Debugger::fireLog($values);
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		Tracy\FireLogger::log($this->stringAttribute);
 		if (
 			$this->stringAttribute->setValue(
 				$form->values->slug,
@@ -77,6 +83,7 @@ class StringControl extends Control {
 		} else {
 			$this->flashMessage('Ups, něco nevyšlo');
 		}
+		Debugger::fireLog('Hello World');
 		$this->presenter->redirectUrl('/' . $form->values->slug);
 	}
 
