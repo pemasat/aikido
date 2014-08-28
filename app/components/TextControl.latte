@@ -4,4 +4,4 @@
     <div class="flash {$flash->type}">{$flash->message}</div>
 {/foreach}
 
-{$content} <a n:href="edit! slug=>$slug, key=>$key">edit</a>
+{nl2br($content)|noescape} <a n:href="edit! slug=>$slug, key=>$key">edit</a>
