@@ -30,7 +30,7 @@ class StringControl extends Control {
 
 	public function render($params) {
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
-		$this->slug = $params['slug'];
+		$this->slug = (isset($params['slug'])) ? $params['slug'] : $this->presenter->params['slug'];
 		$this->key = $params['key'];
 		
 		$template = $this->template;
@@ -39,9 +39,9 @@ class StringControl extends Control {
 		} else {
 			$template->setFile(__DIR__ . '/StringControl.latte');
 		}
-		$template->content = $this->stringAttribute->getValue($params['slug'], $params['key']);
+		$template->content = $this->stringAttribute->getValue($this->slug, $params['key']);
       $template->mode = $this->mode;
-		$template->slug = $params['slug'];
+		$template->slug = $this->slug;
 		$template->key = $params['key'];
 		$template->render();
 		
