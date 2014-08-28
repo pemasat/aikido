@@ -22,12 +22,14 @@ class TextAttribute extends Nette\Object {
 	 * @return boolean
 	 */
 	public function getValue($uri, $key) {
-		$value = $this->connection->query('SELECT value FROM attribute_text WHERE uri=? AND key=?', $uri, $key)->fetchField();
-		if($value == false) {
+		$table =	$this->connection->table('attribute_text')
+						->where('uri = ?', $uri)
+						->where('key = ?', $key);
+		if($table->count() == 0) {
 			$this->createNewValue($uri, $key);
 			return '';
 		} else {
-			return $value;
+			return $table->fetch()->value;
 		}
 	}
 	
@@ -40,7 +42,7 @@ class TextAttribute extends Nette\Object {
 	public function createNewValue($uri, $key) {
 		return $this->connection->query('INSERT INTO attribute_text', array(
 			'uri' => $uri,
-			 'key' => $key
+			'key' => $key
 		));
 	}
 	 

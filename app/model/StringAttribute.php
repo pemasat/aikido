@@ -22,7 +22,28 @@ class StringAttribute extends Nette\Object {
 	 * @return boolean
 	 */
 	public function getValue($uri, $key) {
-		return $this->connection->query('SELECT value FROM attribute_string WHERE uri=? AND key=?', $uri, $key)->fetchField();
+		$table =	$this->connection->table('attribute_string')
+						->where('uri = ?', $uri)
+						->where('key = ?', $key);
+		if($table->count() == 0) {
+			$this->createNewValue($uri, $key);
+			return '';
+		} else {
+			return $table->fetch()->value;
+		}
+	}
+	 
+	/**
+	 * Create new item
+	 * @param string $uri
+	 * @param string $key
+	 * @return boolean
+	 */
+	public function createNewValue($uri, $key) {
+		return $this->connection->query('INSERT INTO attribute_string', array(
+			'uri' => $uri,
+			'key' => $key
+		));
 	}
 	 
 	/**

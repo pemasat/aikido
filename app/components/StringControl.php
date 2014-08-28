@@ -52,7 +52,6 @@ class StringControl extends Control {
 	}
 
 	protected function createComponentEditForm($name) {
-		Debugger::fireLog($this->params);
 		$this->stringAttribute = $this->presenter->context->stringAttribute;
 		
 		$form = new Form($this, $name);
