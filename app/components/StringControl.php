@@ -9,8 +9,6 @@ use Tracy\Debugger;
  * The attribute String control
  */
 class StringControl extends Control {
-	/** @persistent page */
-	public $round = '';
 	private $stringAttribute;
    
    /** @persistent */

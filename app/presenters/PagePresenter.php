@@ -10,7 +10,7 @@ class PagePresenter extends BasePresenter {
 	
 	private $stringAttribute;
 	private $textAttribute;
-
+	
 
 
 
