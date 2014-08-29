@@ -60,6 +60,11 @@ class FrontpageRouter extends Nette\Object implements Nette\Application\IRouter 
 		if (isset($params['string-slug'])) {
 			$slug = $params['string-slug'];
 		}
+		else if (isset($params['text-slug'])) {
+			$slug = $params['text-slug'];
+		}
+		
+		
 		$action = isset($params['action']) ? $params['action'] : NULL;
 		if ($action !== 'default' || !is_string($slug)) return NULL;
 		unset($params['action'], $params['slug']); // we don't want to have 'action' and 'slug' in query parameters
