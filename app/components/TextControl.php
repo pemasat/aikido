@@ -28,7 +28,7 @@ class TextControl extends Control {
 
 	public function render($params) {
 		$this->textAttribute = $this->presenter->context->textAttribute;
-		$this->slug = $params['slug'];
+		$this->slug = (isset($params['slug'])) ? $params['slug'] : $this->presenter->params['slug'];
 		$this->key = $params['key'];
 		
 		$template = $this->template;
