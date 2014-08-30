@@ -1,6 +1,11 @@
 {block content}
 	<h1 n:block=title>{control string slug=>$slug, key=>'title'}</h1>
+	<hr />
+	{control string slug=>$slug, key=>'test'}
+	<hr />
 	{control text slug=>$slug, key=>'content'}
+	<hr />
+	{control text key=>'test'}
 	
 	
 	<h2>Promo</h2>
