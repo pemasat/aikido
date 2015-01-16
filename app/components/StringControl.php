@@ -32,7 +32,11 @@ class StringControl extends Control {
 		$this->key = $params['key'];
 		
 		$template = $this->template;
-		if ($this->mode == 'edit') {
+		
+		if (
+			$this->mode == 'edit' &&
+			$this->params["key"] == $this->key
+		) {
 			$template->setFile(__DIR__ . '/StringControlEdit.latte');
 		} else {
 			$template->setFile(__DIR__ . '/StringControl.latte');
@@ -46,7 +50,7 @@ class StringControl extends Control {
 	}
 	
 	public function handleEdit($param) {
-      $this->mode = 'edit';
+		$this->mode = 'edit';
 	}
 
 	protected function createComponentEditForm($name) {
