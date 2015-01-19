@@ -27,13 +27,15 @@ class TextControl extends Control {
 
 
 	public function render($params) {
-		\Tracy\FireLogger::log($params);
 		$this->textAttribute = $this->presenter->context->textAttribute;
 		$this->slug = (isset($params['slug'])) ? $params['slug'] : $this->presenter->params['slug'];
 		$this->key = $params['key'];
 		
 		$template = $this->template;
-		if ($this->mode == 'edit') {
+		if (
+			$this->mode == 'edit' &&
+			$this->params["key"] == $this->key
+		) {
 			$template->setFile(__DIR__ . '/TextControlEdit.latte');
 		} else {
 			$template->setFile(__DIR__ . '/TextControl.latte');
@@ -48,8 +50,6 @@ class TextControl extends Control {
 	
 	public function handleEdit($param) {
 		$this->textAttribute = $this->presenter->context->textAttribute;
-		\Tracy\FireLogger::log($this->textAttribute);
-		\Tracy\FireLogger::log($param);
 		if ($this->presenter->getRequest()->getParameters()['do'] == 'text-edit') {
 			$this->mode = 'edit';
 		}
