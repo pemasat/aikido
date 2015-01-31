@@ -27,7 +27,7 @@ class StringControl extends Control {
 
 
 	public function render($params) {
-		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		$this->stringAttribute = $this->presenter->context->getService('stringAttribute');
 		$this->slug = (isset($params['slug'])) ? $params['slug'] : $this->presenter->params['slug'];
 		$this->key = $params['key'];
 		
@@ -54,7 +54,7 @@ class StringControl extends Control {
 	}
 
 	protected function createComponentEditForm($name) {
-		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		$this->stringAttribute = $this->presenter->context->getService('stringAttribute');
 		
 		$form = new Form($this, $name);
 		
@@ -69,7 +69,7 @@ class StringControl extends Control {
 	}
 	
 	public function editFormSubmitted(Form $form, $values) {
-		$this->stringAttribute = $this->presenter->context->stringAttribute;
+		$this->stringAttribute = $this->presenter->context->getService('stringAttribute');
 		if (
 			$this->stringAttribute->setValue(
 				$form->values->slug,

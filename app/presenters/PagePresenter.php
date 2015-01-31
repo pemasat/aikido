@@ -19,8 +19,8 @@ class PagePresenter extends BasePresenter {
 		$this->newsModel = $this->context->getService('newsModel');
 		$this->personsModel = $this->context->getService('personsModel');
 		$this->galleriesModel = $this->context->getService('galleriesModel');
-		$this->stringAttribute = $this->context->stringAttribute;
-		$this->textAttribute = $this->context->textAttribute;
+		$this->stringAttribute = $this->context->getService('stringAttribute');
+		$this->textAttribute = $this->context->getService('textAttribute');
 	}
 	public function beforeRender(){
 		$this->template->news = $this->newsModel->findLast();

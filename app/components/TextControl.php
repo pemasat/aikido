@@ -27,7 +27,7 @@ class TextControl extends Control {
 
 
 	public function render($params) {
-		$this->textAttribute = $this->presenter->context->textAttribute;
+		$this->textAttribute = $this->presenter->context->getService('textAttribute');
 		$this->slug = (isset($params['slug'])) ? $params['slug'] : $this->presenter->params['slug'];
 		$this->key = $params['key'];
 		
@@ -49,14 +49,14 @@ class TextControl extends Control {
 	}
 	
 	public function handleEdit($param) {
-		$this->textAttribute = $this->presenter->context->textAttribute;
+		$this->textAttribute = $this->presenter->context->getService('textAttribute');
 		if ($this->presenter->getRequest()->getParameters()['do'] == 'text-edit') {
 			$this->mode = 'edit';
 		}
 	}
 
 	protected function createComponentEditForm($name) {
-		$this->textAttribute = $this->presenter->context->textAttribute;
+		$this->textAttribute = $this->presenter->context->getService('textAttribute');
 		
 		$form = new Form($this, $name);
 		
@@ -71,7 +71,7 @@ class TextControl extends Control {
 	}
 	
 	public function editFormSubmitted(Form $form, $values) {
-		$this->textAttribute = $this->presenter->context->textAttribute;
+		$this->textAttribute = $this->presenter->context->getService('textAttribute');
 		if (
 			$this->textAttribute->setValue(
 				$form->values->slug,

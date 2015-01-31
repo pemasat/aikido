@@ -41,6 +41,3 @@ services:
 	stringAttribute: Aiki\StringAttribute
 	textAttribute: Aiki\TextAttribute
 	
-
-
-factories:
