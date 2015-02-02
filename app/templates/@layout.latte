@@ -26,6 +26,7 @@
 	
 	<script src="{$basePath}/js/jquery.js"></script>
 	<script src="{$basePath}/js/jquery-ui.js"></script>
+	<script src="{$basePath}/js/nette.ajax.js"></script>
 	{block head}{/block}
 </head>
 
@@ -48,5 +49,11 @@
 	<script src="{$basePath}/js/netteForms.js"></script>
 	<script src="{$basePath}/js/main.js"></script>
 	{/block}
+	<script>
+$.nette.init(function (ajaxHandler) {
+    $('a.ajax:not(.no-ajax)').on('click', ajaxHandler);
+});		
+		
+	</script>
 </body>
 </html>
