@@ -6,3 +6,5 @@
 /www/galleries/
 /composer.lock
 /bower*
+/js-vendor*
+/temp*
