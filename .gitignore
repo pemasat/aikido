@@ -8,3 +8,4 @@
 /bower*
 /js-vendor*
 /temp*
+/node_modules
