@@ -10,6 +10,7 @@ class PagePresenter extends BasePresenter {
 	
 	private $stringAttribute;
 	private $textAttribute;
+	private $imageAttribute;
 	
 
 
@@ -21,6 +22,7 @@ class PagePresenter extends BasePresenter {
 		$this->galleriesModel = $this->context->getService('galleriesModel');
 		$this->stringAttribute = $this->context->getService('stringAttribute');
 		$this->textAttribute = $this->context->getService('textAttribute');
+		$this->imageAttribute = $this->context->getService('imageAttribute');
 	}
 	public function beforeRender(){
 		$this->template->news = $this->newsModel->findLast();
@@ -49,6 +51,16 @@ class PagePresenter extends BasePresenter {
 	*/
 	protected function createComponentText() {
 		$text = new TextControl;
+		$text->redrawControl();
+		return $text;
+	}
+
+	/**
+	* Image control factory.
+	* @return ImageControl
+	*/
+	protected function createComponentImage() {
+		$text = new ImageControl;
 		$text->redrawControl();
 		return $text;
 	}

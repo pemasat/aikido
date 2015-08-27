@@ -1,0 +1,7 @@
+{block content}
+
+{foreach $flashes as $flash}
+    <div class="flash {$flash->type}">{$flash->message}</div>
+{/foreach}
+
+{nl2br($content)|noescape} <a n:href="edit! slug=>$slug, key=>$key">edit</a>
