@@ -4,21 +4,19 @@
 # If you don't protect this directory from direct web access, anybody will be able to see your passwords.
 # http://nette.org/security-warning
 #
-parameters:
-	database:
-		driver: sqlite
-		host: %appDir%/../db/share.db
 
 php:
 	date.timezone: Europe/Prague
 	# zlib.output_compression: yes
 
+database:
+	default:
+		dsn: 'sqlite:%appDir%/../db/share.db'
+
 nette:
 	application:
 		errorPresenter: Error
 
-	database:
-		dsn: '%database.driver%:%database.host%'
 
 	session:
 		expiration: 14 days
@@ -26,17 +24,15 @@ nette:
 
 services:
 
-	database: @nette.database.default
-
 	authenticator: Authenticator
 	routerFactory: RouterFactory
-	router: @routerFactory::createRouter(@database)
+	router: @routerFactory::createRouter
 
 	newsModel: Aiki\NewsRepository
 	contactModel: Aiki\ContactModel
 	galleriesModel: Aiki\GalleriesRepository
 	personsModel: Aiki\PersonsRepository
-	frontpageModel: Aiki\FrontpageRepository(@database)
+	frontpageModel: Aiki\FrontpageRepository
 
 	stringAttribute: Aiki\StringAttribute
 	textAttribute: Aiki\TextAttribute

@@ -1,0 +1,1496 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cre",
+				"createElement〔function〕"
+			],
+			[
+				"crea",
+				"createElement"
+			],
+			[
+				"cl",
+				"classList"
+			],
+			[
+				"li",
+				"listElement"
+			],
+			[
+				"pa",
+				"parent"
+			],
+			[
+				"add",
+				"addEventListener"
+			],
+			[
+				"mu",
+				"multiplex_container"
+			],
+			[
+				"lis",
+				"listElement"
+			],
+			[
+				"new",
+				"newEmptyInput〔variable〕"
+			],
+			[
+				"con",
+				"container"
+			],
+			[
+				"a",
+				"addEventsForActualInput〔function〕"
+			],
+			[
+				"cont",
+				"contrainer"
+			],
+			[
+				"ad",
+				"addDefaultEvents"
+			],
+			[
+				"for",
+				"forEach"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"nam",
+				"nameSpace"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"sc",
+				"script	Tag"
+			],
+			[
+				"text-",
+				"text-transform"
+			],
+			[
+				"vide",
+				"video〔variable〕"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"ta",
+				"table-cell"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"border-bo",
+				"border-bottom-left-radius"
+			],
+			[
+				"border-ra",
+				"border-radius"
+			],
+			[
+				"backgrou",
+				"background-color"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"table-c",
+				"table-cell"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"inline",
+				"inline-block"
+			],
+			[
+				"ceska",
+				"ceskapojistovna"
+			],
+			[
+				"play",
+				"playVideo〔function〕"
+			],
+			[
+				"stat",
+				"status〔variable〕"
+			],
+			[
+				"sta",
+				"status〔variable〕"
+			],
+			[
+				"we",
+				"webkitfullscreenchange"
+			],
+			[
+				"cde",
+				"c:define	aladin-define"
+			],
+			[
+				"xde",
+				"x:debugWrite	aladin-xDebugWrite"
+			],
+			[
+				"cis",
+				"c:isFalse	aladin-isFalse"
+			],
+			[
+				"cw",
+				"c:wr	aladin-write"
+			],
+			[
+				"quer",
+				"querySelector"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"re",
+				"regexp"
+			],
+			[
+				"cca",
+				"c:callTemplate	aladin-callTemplate"
+			],
+			[
+				"m",
+				"mImplementation_location"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"cwr",
+				"c:debugWrite	aladin-debugWrite"
+			],
+			[
+				"dele",
+				"deleteCookie"
+			],
+			[
+				"sw",
+				"switchToPhoneWeb"
+			],
+			[
+				"set",
+				"setCookie"
+			],
+			[
+				"even",
+				"events"
+			],
+			[
+				"eve",
+				"events"
+			],
+			[
+				"lan",
+				"lang_domain"
+			],
+			[
+				"menus_lan",
+				"menus_lang_item"
+			],
+			[
+				"lay",
+				"layout_head_special"
+			],
+			[
+				"no",
+				"noescape"
+			],
+			[
+				"text",
+				"texts_content"
+			],
+			[
+				"ci",
+				"c:isTrue	aladin-isTrue"
+			],
+			[
+				"_get",
+				"_get_searchResault"
+			],
+			[
+				"arra",
+				"array_item"
+			],
+			[
+				"array",
+				"arrayItemWUuid"
+			],
+			[
+				"cc",
+				"c:callableTemplate	aladin-callableTemplate"
+			],
+			[
+				"s",
+				"script	Tag"
+			],
+			[
+				"co",
+				"counter"
+			],
+			[
+				"item",
+				"item_counter"
+			],
+			[
+				"ite",
+				"items"
+			],
+			[
+				"au",
+				"auction"
+			],
+			[
+				"auc",
+				"auction_item"
+			],
+			[
+				"auction_item_",
+				"auction_item_preview"
+			],
+			[
+				"xi",
+				"x:iterate	aladin-xiterate"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"cte",
+				"c:test	aladin-test"
+			],
+			[
+				"auction_",
+				"auction_item"
+			],
+			[
+				"sho",
+				"showErrorMessage"
+			],
+			[
+				"is",
+				"isTrue"
+			],
+			[
+				"cite",
+				"c:iterate	aladin-iterate"
+			],
+			[
+				"info",
+				"infoText"
+			],
+			[
+				"xd",
+				"x:debugWrite	aladin-xDebugWrite"
+			],
+			[
+				"get",
+				"getCheckSumFromAllAuction"
+			],
+			[
+				"paddin",
+				"padding-top"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"body",
+				"bodyElement"
+			],
+			[
+				"bo",
+				"bodyElement"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"so",
+				"social"
+			],
+			[
+				"cms",
+				"cms:define"
+			],
+			[
+				"_",
+				"_get_level"
+			],
+			[
+				"cal",
+				"cms:callableTemplate"
+			],
+			[
+				"type",
+				"typeName"
+			],
+			[
+				"te",
+				"test"
+			],
+			[
+				"ca",
+				"cms:callTemplate"
+			],
+			[
+				"_ge",
+				"_get_checked_newieItem"
+			],
+			[
+				"c",
+				"c:test	aladin-test"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"hea",
+				"header"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"menu",
+				"menuElement〔argument〕"
+			],
+			[
+				"me",
+				"menuElement"
+			],
+			[
+				"time",
+				"timeToAnswer"
+			],
+			[
+				"de",
+				"decreaseTimeAndCheckStatus"
+			],
+			[
+				"na",
+				"nextPath=${item_ask"
+			],
+			[
+				"list-style",
+				"list-style-type"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"hi",
+				"hideMenu"
+			],
+			[
+				"fun",
+				"function〔keyword〕"
+			],
+			[
+				"p",
+				"phoneControl"
+			],
+			[
+				"men",
+				"menuToogleEvent"
+			],
+			[
+				"tex",
+				"text-indent"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pac",
+		"selected_items":
+		[
+			[
+				"pac",
+				"Package Control: List Packages"
+			],
+			[
+				"lin",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"syn java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syn j",
+				"Set Syntax: Java"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"form",
+				"Tag: Auto-Format Tags on Selection"
+			],
+			[
+				"syn html",
+				"Set Syntax: HTML"
+			],
+			[
+				"syn css",
+				"Set Syntax: CSS"
+			],
+			[
+				"wra",
+				"Word Wrap: Toggle"
+			],
+			[
+				"for",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"syn xml",
+				"Set Syntax: XML"
+			],
+			[
+				"forma",
+				"Tag: Auto-Format Tags on Document"
+			],
+			[
+				"wrt",
+				"Word Wrap: Toggle"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"sy hm",
+				"Set Syntax: HTML"
+			],
+			[
+				"packa li",
+				"Package Control: List Packages"
+			],
+			[
+				"syn js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"pretify",
+				"HTMLPrettify"
+			],
+			[
+				"w",
+				"Word Wrap: Toggle"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"auto",
+				"Tag: Auto-Format Tags on Selection"
+			],
+			[
+				"tab",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"syn ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"wr",
+				"Word Wrap: Toggle"
+			],
+			[
+				"tag",
+				"Tag: Rename"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"qu",
+				"Git: Quick Commit"
+			],
+			[
+				"git a",
+				"Git: Add..."
+			],
+			[
+				"qui",
+				"Git: Quick Commit"
+			],
+			[
+				"git ad",
+				"Git: Add..."
+			],
+			[
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git q",
+				"Git: Quick Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git fetch",
+				"Git: Fetch"
+			],
+			[
+				"fetch ",
+				"Git: Fetch"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"gi a",
+				"Git: Add..."
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"git c q",
+				"Git: Quick Commit"
+			],
+			[
+				"gi q",
+				"Git: Quick Commit"
+			],
+			[
+				"gt ad .",
+				"Git: Add..."
+			],
+			[
+				"git a .",
+				"Git: Add..."
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"gitq",
+				"Git: Quick Commit"
+			],
+			[
+				"theme",
+				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"synta html",
+				"Set Syntax: HTML"
+			],
+			[
+				"git hi",
+				"Git: Commit history"
+			],
+			[
+				"git his",
+				"Git: Commit history"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"proje",
+				"Project: Close"
+			],
+			[
+				"git gui",
+				"Git: Gui"
+			],
+			[
+				"quic",
+				"Git: Quick Commit"
+			],
+			[
+				"gitk",
+				"Git GUI Clients: Gitk"
+			],
+			[
+				"git ",
+				"Git: Commit"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"file",
+				"File Navigator: Open"
+			],
+			[
+				"gi",
+				"Git: Commit"
+			],
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"light",
+				"SublimeLinter: Choose Gutter Theme"
+			],
+			[
+				"lorem",
+				"Add some Lorem Gibson"
+			],
+			[
+				"test",
+				"Snippet: test"
+			],
+			[
+				"sni",
+				"Snippet: html"
+			],
+			[
+				"git me",
+				"Git: Merge Branch"
+			],
+			[
+				"git p",
+				"Git: Push"
+			],
+			[
+				"emme",
+				"Emmet: Reflect CSS Value"
+			],
+			[
+				"emm",
+				"Emmet: Evaluate Math Expression"
+			],
+			[
+				"emmet css",
+				"Emmet: Reflect CSS Value"
+			],
+			[
+				"syn",
+				"Set Syntax: LESS"
+			],
+			[
+				"rename",
+				"Emmet: Rename Tag"
+			],
+			[
+				"svn",
+				"Preferences: SVN Settings"
+			],
+			[
+				"cha",
+				"Emmet: Go to Matching Pair"
+			],
+			[
+				"spli",
+				"Emmet: Split\\Join Tag"
+			],
+			[
+				"repla",
+				"Tag: Remove Picked Tags in Selection"
+			],
+			[
+				"split",
+				"Emmet: Split\\Join Tag"
+			],
+			[
+				"slpi",
+				"Emmet: Split\\Join Tag"
+			],
+			[
+				"line",
+				"File: New View into File"
+			],
+			[
+				"ma",
+				"Maven: Run clean install"
+			],
+			[
+				"portle",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"indent",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"packas",
+				"Package Control: Install Package"
+			],
+			[
+				"pacla",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 584.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/aikido",
+		"/var/www/aikido/app",
+		"/var/www/aikido/app/config"
+	],
+	"file_history":
+	[
+		"/var/www/aikido/app/config/config.neon",
+		"/var/www/onlio/cpoj/multipleExt/example.html",
+		"/var/www/onlio/cpoj/multipleExt/scss/main.scss",
+		"/var/www/onlio/cpoj/multipleExt/disc/main.js",
+		"/var/www/onlio/cpoj/multipleExt/gulpfile.js",
+		"/var/www/onlio/cpoj/multipleExt/package.json",
+		"/var/www/onlio/cpoj/multipleExt/js/multiple.js",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.321u332t.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2x251y1c.html",
+		"/var/www/onlio/cpoj/multiple/test.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.1w1c2d32.js",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.3d1v252i.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_CPOJ-1537.1i3a371j.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_ROKLEN-502.1f1x1t2g.html",
+		"/usr/share/applications/firefox.desktop",
+		"/var/www/onlio/cpoj/landing-boty/desc/dev.css",
+		"/var/www/onlio/pnf/test.html",
+		"/var/www/onlio/cpoj/landing-boty/dev.scss",
+		"/var/www/onlio/cpoj/landing-boty/index.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.28203a33.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3b211h2q.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.35392717.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2i2d2927.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3d1y3b27.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2r2q1i2z.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2832281b.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2b1c2131.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3c1k2s1i.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1g2y2e2t.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.361l2u1b.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3238232v.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1g3e2938.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2z2v2t38.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_WO-8844.1w2p2q2h.html",
+		"/var/www/onlio/test/index.htm",
+		"/var/www/onlio/test/test2.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.26212y24.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_CPOJ-1495.20242s31.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2i1e2h1i.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.24232x3c.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.262r1z2r.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1u1e2439.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3a1e2e29.html",
+		"/home/mawebis/Tmp/mikca/times.txt",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_WO-8698.1v1e1k34.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1y1c1g1h.html",
+		"/home/mawebis/Tmp/index.html.1",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_CPOJ-1490.362d3e23.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.272c3636.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.3a2h223b.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2h341w30.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.332b3923.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2b231d23.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2v36291u.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.1l2e2g2w.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2w1x2z34.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.232z2g2v.html",
+		"/home/mawebis/Git/Roklen/roklen360theme/src/main/frontend/test/test2.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/www.cpas.cpoj-liferay-pm8180_html_js_editor_fckeditor_editor_fckeditor.html.2t3d362p.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.252g2t2s.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3923363b.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1x2i2t2u.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_CPOJ-1468.27252t1i.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/localhost8080_group_control_panel_manage.3233222c.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.342f311e.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1b2z1l1b.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/localhost8080_group_control_panel_manage.2w1e2f2h.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2v262v2u.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2t2y1x1g.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/localhost8080_group_control_panel_manage.361f1z2y.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3633362s.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.261k1t25.html",
+		"/var/www/onlio/uceni/dusan-uceni/automat.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.3117321g.html",
+		"/var/www/html/game.js",
+		"/var/www/html/game.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.33341y2x.html",
+		"/var/www/onlio/seminar/js-debuging/1-minimalize.js",
+		"/var/www/onlio/seminar/js-debuging/0-dom-explorer.html",
+		"/var/www/onlio/seminar/js-debuging/1-unminimalize.html",
+		"/var/www/onlio/seminar/js-debuging/2-exception.html",
+		"/var/www/onlio/seminar/js-debuging/3-form-runtime-err.html",
+		"/var/www/onlio/seminar/js-debuging/4-ajax.html",
+		"/var/www/onlio/seminar/js-debuging/5-hledani-fce.html",
+		"/var/www/onlio/cpoj/namety-a-stiznosti/offline.html",
+		"/home/mawebis/Tmp/trash/a.html",
+		"/var/www/onlio/cpoj/namety-a-stiznosti/offliene-kontakt.html",
+		"/home/mawebis/Tmp/nova-sudova-vicka.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms.szdc.cz_admin_modules_webmodul_templates_edit.do.37381y1y.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms.szdc.cz_admin_modules_webmodul_templates_edit.do.331l2a1w.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms.szdc.cz_admin_modules_webmodul_templates_edit.do.1g212e3d.html",
+		"/var/www/onlio/cpoj/namety-a-stiznosti/nas.js",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_CPOJ-1435.262q1k2f.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_CPOJ-1439.251c172h.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.361t3b35.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2z1h2b26.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.372w3e34.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.341t1e3c.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1i392d1e.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1x2z3e2g.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2t35242z.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/78.24.10.11_admin_modules_webmodul_templates_edit.do.2a2w3e1t.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/78.24.10.11_admin_modules_webmodul_templates_edit.do.1t1g2f1u.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2e2e1d34.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/78.24.10.11_admin_modules_webmodul_templates_edit.do.291x1c33.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.261d2h20.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2437303a.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.242i2g2r.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.241v1c38.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/78.24.10.11_admin_modules_webmodul_templates_edit.do.2s2z351h.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/78.24.10.11_admin_modules_webmodul_templates_edit.do.2u1u1h2v.html",
+		"/home/mawebis/Onlio/action.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/jira.onlio.com_browse_WO-8254.3a2h3b33.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2r272u23.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.2h3a2u38.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.352x1z1l.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/www.roklen360.cz_roklenfx.262p1g2c.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/www.roklen360.cz_roklenpro.321v2v26.html",
+		"/home/mawebis/Onlio/action-dev.html",
+		"/home/mawebis/Onlio/action-dev.js",
+		"/home/mawebis/Onlio/action.js",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1j2e211y.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1k1g1x2r.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2p1v2122.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.1c1b2b38.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.243d2e1b.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_templates_edit.do.2a392y21.html",
+		"/home/mawebis/.mozilla/firefox/iv6spxwi.default/itsalltext/cms2.onlio.com_admin_modules_webmodul_content_edit.do.252c2v1k.html"
+	],
+	"find":
+	{
+		"height": 68.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/var/www/cooldance",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			" \n",
+			"database",
+			"default",
+			"data",
+			"fakeBtn",
+			"resetBtn",
+			"[]",
+			"preve",
+			");\n",
+			"fillInputs",
+			"clearFiles",
+			"preventDefault",
+			"input",
+			"listElement",
+			"li",
+			"this",
+			"contrainer",
+			");\n",
+			"multiple",
+			"Multiple",
+			"attachment",
+			"list",
+			"backToGame",
+			"webkitExitFullscreen",
+			"consol",
+			"focu",
+			"and ",
+			"contact-media-page",
+			".contact-media-page",
+			"contact-media-page",
+			"20px",
+			"- ",
+			" /*!YUI Compressor */",
+			" v ",
+			" a ",
+			" o ",
+			" 7 ",
+			" i ",
+			" &nbsp;Kč",
+			" 2 ",
+			" 5 ",
+			" Kč",
+			" 1 ",
+			" s ",
+			"ext",
+			"CPOJ",
+			"cpoj",
+			"CPOJ",
+			"you",
+			"youtu",
+			"kladu do 10 000",
+			"https://online.ceskapojistovna.cz/pojisteni-majetku",
+			"více",
+			"journal-content-article",
+			".top",
+			"top",
+			"style=\"height: 220px;\" ",
+			"class",
+			"style=\"height: 220px;\" ",
+			"style=\"height: 220px;\"",
+			"top",
+			"../index_files/",
+			"index_files",
+			"canplaythrough",
+			"canplayEvent",
+			"canplay",
+			"play",
+			"trojbox",
+			"style",
+			"p",
+			"Můj život",
+			"<style",
+			"layout-column_column-1",
+			"h4",
+			"30%",
+			"checkChangeFroLoginForm",
+			"change",
+			"change_location",
+			"_get_videoBox",
+			"current.parent.parent.video",
+			"_get_playBox",
+			"video",
+			"_set_isCorectCode",
+			"background",
+			"windo",
+			"\"code\"",
+			"<scrip",
+			"Přijali jsme Vaši žádost o registraci k přístupu do Partnersk",
+			"uspesne",
+			"a",
+			"background",
+			"0 % Konzervativní fond",
+			"O Fondu korporátních dluhopisů ",
+			"ZDE",
+			"0 % Fond globální",
+			"\n<",
+			"w_lostPassRequestForm",
+			"# -",
+			"<a style=\"\" href=\"#odstoupeni-od-pojistne-smlouvy-nzp-info\" class=\"show-info-immediately bubbler-info\"><span class=\"hide\">rozšiřující informace</span></a>",
+			"smlouvy",
+			"left",
+			"999999px",
+			"stream2",
+			"full",
+			"stream",
+			"ct",
+			"videoCode",
+			"video",
+			"cacheVideo",
+			"<video",
+			"video",
+			"_get_urlByView",
+			"mImplementation_location",
+			"objectNormalizedName",
+			".objectName|normalize",
+			"mImplementation_location",
+			"location",
+			"?id=",
+			"/",
+			"?id=",
+			"id=",
+			"has_cz_content",
+			"video",
+			"QueryString.promo",
+			"http://www.ceskapojistovna.cz",
+			"http",
+			"cestovni",
+			"- C"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"container",
+			"and /*!YUI Compressor */ ",
+			" ",
+			" v&nbsp;",
+			" a&nbsp;",
+			" o&nbsp;",
+			" 7&nbsp;",
+			" i&nbsp;",
+			"&nbsp;Kč",
+			" 2&nbsp;",
+			" 5&nbsp;",
+			"&nbsp;Kč",
+			" 1&nbsp;",
+			" s&nbsp;",
+			"playBox_src",
+			"#-",
+			".objectNormalizedName",
+			"/",
+			"#- C",
+			".formme",
+			"UUID_2042",
+			"UUID_2041",
+			"UUID_2040",
+			"UUID_2039",
+			"UUID_2038",
+			"UUID_2037",
+			"UUID_2015",
+			"UUID_2037",
+			"UUID_2036",
+			"UUID_2035",
+			"gray",
+			"UUID_2025",
+			"<td>aaa</td>",
+			"UUID_2019",
+			"_set_answerToDB",
+			"logo",
+			"lang",
+			"::after",
+			"::before"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 36.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 124.0
+	},
+	"output.mvn_exec":
+	{
+		"height": 390.0
+	},
+	"pinned_build_system": "",
+	"project": "aikido.sublime-project",
+	"replace":
+	{
+		"height": 68.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mul",
+				"js/multiple.js"
+			],
+			[
+				"gul",
+				"gulpfile.js"
+			],
+			[
+				"menu",
+				"elements/menu/menu.js"
+			],
+			[
+				"",
+				"layout/homepage/homepage.less"
+			],
+			[
+				"lay",
+				"layout.less"
+			],
+			[
+				"home",
+				"layout/homepage/homepage.less"
+			],
+			[
+				"caro",
+				"elements/carousel/carousel.less"
+			],
+			[
+				"socia",
+				"elements/social/social.less"
+			],
+			[
+				"homepa",
+				"layout/homepage/homepage.less"
+			],
+			[
+				"heade",
+				"elements/header/header.less"
+			],
+			[
+				"footer.e",
+				"elements/footer/footer.less"
+			],
+			[
+				"hom",
+				"layout/homepage/homepage.html"
+			],
+			[
+				"menu.j",
+				"elements/menu/menu.js"
+			],
+			[
+				"homep",
+				"layout/homepage/homepage.less"
+			],
+			[
+				"sek",
+				"layout/sekce/sekce.html"
+			],
+			[
+				"var",
+				"variables.less"
+			],
+			[
+				"infot",
+				"elements/infothumb/infothumb.css"
+			],
+			[
+				"info",
+				"elements/infobox/infobox.less"
+			],
+			[
+				"bowe",
+				"bower.json"
+			],
+			[
+				"sekce",
+				"layout/sekce/sekce.html"
+			],
+			[
+				"k",
+				"layout/kategorie/kategorie.html"
+			],
+			[
+				"layou",
+				"layout.css"
+			],
+			[
+				"layo",
+				"layout.less"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"dist.css",
+				"dist/main.css"
+			],
+			[
+				"exam",
+				"elements/example/example.less"
+			],
+			[
+				"kate",
+				"layout/kategorie/kategorie.html"
+			],
+			[
+				"lan",
+				"elements/lang/lang.html"
+			],
+			[
+				"foot",
+				"elements/footer/footer.less"
+			],
+			[
+				"foote",
+				"elements/footer/footer.html"
+			],
+			[
+				"soc",
+				"elements/social/social.less"
+			],
+			[
+				"main",
+				"dist/main.css"
+			],
+			[
+				"footerle",
+				"elements/footer/footer.less"
+			],
+			[
+				"footejs",
+				"elements/footer/footer.js"
+			],
+			[
+				"social",
+				"elements/social/social.less"
+			],
+			[
+				"foo",
+				"elements/footer/footer.less"
+			],
+			[
+				"hea",
+				"elements/header/header.html"
+			],
+			[
+				"soci",
+				"elements/social/social.js"
+			],
+			[
+				"varia",
+				"variables.less"
+			],
+			[
+				"socialless",
+				"elements/social/social.less"
+			],
+			[
+				"headerle",
+				"elements/header/header.less"
+			],
+			[
+				"headerhtml",
+				"elements/header/header.html"
+			],
+			[
+				"menu.css",
+				"elements/menu/menu.css"
+			],
+			[
+				"he",
+				"elements/header/header.less"
+			],
+			[
+				"header.le",
+				"elements/header/header.less"
+			],
+			[
+				"logo.le",
+				"elements/logo/logo.less"
+			],
+			[
+				"headr",
+				"elements/header/header.html"
+			],
+			[
+				"glo",
+				"global.js"
+			],
+			[
+				"logo",
+				"elements/logo/logo.html"
+			],
+			[
+				"logo.html",
+				"elements/logo/logo.html"
+			],
+			[
+				"logo.css",
+				"elements/logo/logo.css"
+			],
+			[
+				"menus",
+				"cooldance/elements/menu/menu.js"
+			],
+			[
+				"lang.js",
+				"cooldance/elements/lang/lang.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/var/www/cooldance/cooldance.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 218.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
