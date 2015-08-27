@@ -1,0 +1,27 @@
+#Options +FollowSymlinks
+RewriteEngine on
+
+RewriteBase /www/
+
+# configure PHP
+php_flag magic_quotes_gpc off
+php_flag register_globals off
+php_value max_execution_time 60
+#php5_value session.save_path /home/www/aikidohostivar.cz/app/sessions
+
+# domain redirecting
+RewriteCond %{HTTP_HOST} ^aikidohostivar\.cz
+RewriteRule (.*) http://www.aikidohostivar.cz/$1 [R,L]
+
+
+# front controller
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule !\.(mp3|txt|css|pdf|ico|js|gif|jpg|png|rar|zip|tar\.gz)$ index.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*)\.(mp3|txt|css|pdf|ico|js|gif|jpg|png|rar|zip|tar\.gz)$ /www/$1\.$2 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule	!((.)\.(mp3|txt|css|pdf|ico|js|gif|jpg|png|rar|zip|tar\.gz|html))$	/index.html   [R=301,L]
