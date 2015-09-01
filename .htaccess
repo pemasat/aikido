@@ -17,11 +17,11 @@ RewriteRule (.*) http://www.aikidohostivar.cz/$1 [R,L]
 # front controller
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule !\.(mp3|txt|css|pdf|ico|js|gif|jpg|png|rar|zip|tar\.gz)$ index.php [L]
+RewriteRule !\.(mp3|txt|css|pdf|ico|js|rar|zip|tar\.gz)$ index.php [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule (.*)\.(mp3|txt|css|pdf|ico|js|gif|jpg|png|rar|zip|tar\.gz)$ /www/$1\.$2 [L]
+RewriteRule (.*)\.(mp3|txt|css|pdf|ico|js|rar|zip|tar\.gz)$ /www/$1\.$2 [L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule	!((.)\.(mp3|txt|css|pdf|ico|js|gif|jpg|png|rar|zip|tar\.gz|html))$	/index.html   [R=301,L]
+RewriteRule	!((.)\.(mp3|txt|css|pdf|ico|js|rar|zip|tar\.gz|html))$	/index.html   [R=301,L]

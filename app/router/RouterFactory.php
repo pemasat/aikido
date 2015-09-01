@@ -18,6 +18,12 @@ class RouterFactory {
 		
 		$router[] = new Aiki\FrontpageRouter($dbConnection);
 		
+		$router[] = new Route('/images/<path>/<file>', array(
+			'presenter' => 'Image',
+			'action' => 'static',
+			'path' => 'null',
+		));
+
 		$router[] = new Route('<presenter>/<id>/<action>', array(
 			 'action' => 'default',
 			 'id' => 'null',
@@ -27,7 +33,7 @@ class RouterFactory {
 		$router[] = new Route('index.php', 'Homepage:default', Route::ONE_WAY);
                 
 		$router[] = new Route('/', 'Homepage:default');
-		
+
 		return $router;
 	}
 
